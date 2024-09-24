@@ -2,9 +2,9 @@
 # ASE Portfolio
 Fill in the fields below.
 
-## Your Name
-### Your Group
-### Your Tutor
+## Asheley Hughes
+### Group 1
+### Duncan Mullier
 
 Keep your progress up to date below. Put "DONE" after each section, when you have done it.
 
