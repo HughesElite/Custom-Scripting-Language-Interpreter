@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(booseForm));
             inputTextBox = new TextBox();
             runButton = new Button();
+            outputPictureBox = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)outputPictureBox).BeginInit();
             SuspendLayout();
             // 
             // inputTextBox
@@ -38,8 +40,9 @@
             inputTextBox.Location = new Point(25, 28);
             inputTextBox.Multiline = true;
             inputTextBox.Name = "inputTextBox";
-            inputTextBox.Size = new Size(399, 365);
+            inputTextBox.Size = new Size(400, 365);
             inputTextBox.TabIndex = 0;
+            inputTextBox.TextChanged += inputTextBox_TextChanged;
             // 
             // runButton
             // 
@@ -50,12 +53,22 @@
             runButton.Text = "Run";
             runButton.UseVisualStyleBackColor = true;
             // 
+            // outputPictureBox
+            // 
+            outputPictureBox.BackColor = SystemColors.Window;
+            outputPictureBox.Location = new Point(576, 28);
+            outputPictureBox.Name = "outputPictureBox";
+            outputPictureBox.Size = new Size(400, 365);
+            outputPictureBox.TabIndex = 2;
+            outputPictureBox.TabStop = false;
+            // 
             // booseForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaGreen;
             ClientSize = new Size(1022, 498);
+            Controls.Add(outputPictureBox);
             Controls.Add(runButton);
             Controls.Add(inputTextBox);
             DoubleBuffered = true;
@@ -65,6 +78,7 @@
             Name = "booseForm";
             Text = "Ashley's BOOSE Interpreter";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)outputPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -73,5 +87,6 @@
 
         private TextBox inputTextBox;
         private Button runButton;
+        private PictureBox outputPictureBox;
     }
 }

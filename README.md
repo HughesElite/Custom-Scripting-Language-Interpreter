@@ -5,13 +5,14 @@
 ### Group 1
 ### Duncan Mullier
 
-Keep your progress up to date below. Put "DONE" after each section, when you have done it.
-
 ### Checkpoint
 #### 1 Version Control (1) 5 marks
 	At least two documented commits to provided on GitHub Classroom BEFORE 12pm 7th October.
 	At least 5 documented commits.
 	Readme.md file filled in correctly.
+	
+	- - - DONE - - - 
+
 #### 2 Unit Tests for basic drawing commands above (1) 5 marks
 	Unit Test for moveto command (variables storing pen position are correct)
 	Unit Test for drawTo command (variables storing pen position are correct)
