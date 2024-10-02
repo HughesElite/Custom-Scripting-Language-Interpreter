@@ -6,9 +6,9 @@ using BOOSE;
 
 namespace ASE_Assignment_Ashley_Hughes
 {
-    public partial class BooseForm : Form
+    public partial class booseForm : Form
     {
-        public BooseForm()
+        public booseForm()
         {
             InitializeComponent();
             Debug.WriteLine(AboutBOOSE.about());
