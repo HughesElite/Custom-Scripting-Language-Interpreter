@@ -43,7 +43,8 @@ Keep your progress up to date below. Put "DONE" after each section, when you hav
 #### 4 Design Patterns (1) 5 marks 
 	Use of factory Design Pattern for command creation
 	Demonstrate the use of another design pattern of your choice
-	(for 5,6 and 7 you can click the links to see the example BOOSE programs that must be run, these are in your Portfolio. You must run the unrestricted programs and replace the image already there with an 	image of your BOOSE Interpreter running the BOOSE programs. You may show further programs in your portfolio.)
+	(for 5,6 and 7 you can click the links to see the example BOOSE programs that must be run, these are in your Portfolio. 
+	You must run the unrestricted programs and replace the image already there with an 	image of your BOOSE Interpreter running the BOOSE programs. You may show further programs in your portfolio.)
 #### 5 Replaced variables (2)
 	Int	4 marks
 	Real	4 marks

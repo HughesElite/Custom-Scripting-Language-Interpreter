@@ -1,6 +1,6 @@
 ﻿namespace ASE_Assignment_Ashley_Hughes
 {
-    partial class Form1
+    partial class BooseForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,15 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BooseForm));
             SuspendLayout();
             // 
-            // Form1
+            // BooseForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Name = "Form1";
-            Text = "Form1";
+            BackColor = Color.SeaGreen;
+            ClientSize = new Size(1022, 498);
+            DoubleBuffered = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            Name = "BooseForm";
+            Text = "Ashley's BOOSE Interpreter";
             Load += Form1_Load;
             ResumeLayout(false);
         }
