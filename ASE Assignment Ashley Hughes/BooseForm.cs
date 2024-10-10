@@ -26,7 +26,7 @@ namespace ASE_Assignment_Ashley_Hughes
             Debug.WriteLine(AboutBOOSE.about());
 
             myCanvas = new AppCanvas();
-            myCanvas.MoveTo(100, 200);
+            myCanvas.MoveTo(100, 100);
             myCanvas.PenColour = Color.Red;
             myCanvas.DrawTo(200, 200);
             myCanvas.Circle(50, false);

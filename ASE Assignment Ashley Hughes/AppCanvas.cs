@@ -62,6 +62,13 @@ namespace ASE_Assignment_Ashley_Hughes
             set
             {
                 penColour = (Color)value;
+
+                /*
+                 adding the below line fixes the error 'System.ArgumentNullException: 'Value cannot be null. Arg_ParamName_Name'
+                 which refers to the Draw To command when called on Line 90
+                */
+
+                //  Pen = new Pen(penColour, penSize);
             }
         }
 
@@ -76,7 +83,7 @@ namespace ASE_Assignment_Ashley_Hughes
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void DrawTo(int toX, int toY)
@@ -109,7 +116,7 @@ namespace ASE_Assignment_Ashley_Hughes
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void Set(int xsize, int ysize)
@@ -123,11 +130,10 @@ namespace ASE_Assignment_Ashley_Hughes
 
         public void SetColour(int red, int green, int blue)
         {
-            if (red > 255 || green > 255 || blue > 255)
+            if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255)
                 throw new CanvasException("Invalid colour " + red + "," + green + "," + blue);
             penColour = Color.FromArgb(255, red, green, blue);
             Pen = new Pen(penColour, penSize);
-
         }
 
         public void Tri(int width, int height)
