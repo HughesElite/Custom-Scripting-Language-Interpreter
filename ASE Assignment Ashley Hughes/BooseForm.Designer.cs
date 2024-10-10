@@ -29,38 +29,40 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(booseForm));
-            inputTextBox = new TextBox();
-            runButton = new Button();
-            outputPictureBox = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)outputPictureBox).BeginInit();
+            ProgramWindow = new TextBox();
+            RunButton = new Button();
+            PictureBox = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)PictureBox).BeginInit();
             SuspendLayout();
             // 
-            // inputTextBox
+            // ProgramWindow
             // 
-            inputTextBox.Location = new Point(25, 28);
-            inputTextBox.Multiline = true;
-            inputTextBox.Name = "inputTextBox";
-            inputTextBox.Size = new Size(400, 365);
-            inputTextBox.TabIndex = 0;
-            inputTextBox.TextChanged += inputTextBox_TextChanged;
+            ProgramWindow.Location = new Point(25, 28);
+            ProgramWindow.Multiline = true;
+            ProgramWindow.Name = "ProgramWindow";
+            ProgramWindow.Size = new Size(400, 365);
+            ProgramWindow.TabIndex = 0;
+            ProgramWindow.TextChanged += inputTextBox_TextChanged;
             // 
-            // runButton
+            // RunButton
             // 
-            runButton.Location = new Point(25, 408);
-            runButton.Name = "runButton";
-            runButton.Size = new Size(87, 30);
-            runButton.TabIndex = 1;
-            runButton.Text = "Run";
-            runButton.UseVisualStyleBackColor = true;
+            RunButton.Location = new Point(25, 408);
+            RunButton.Name = "RunButton";
+            RunButton.Size = new Size(87, 30);
+            RunButton.TabIndex = 1;
+            RunButton.Text = "Run";
+            RunButton.UseVisualStyleBackColor = true;
+            RunButton.Click += RunButton_Click;
             // 
-            // outputPictureBox
+            // PictureBox
             // 
-            outputPictureBox.BackColor = SystemColors.Window;
-            outputPictureBox.Location = new Point(576, 28);
-            outputPictureBox.Name = "outputPictureBox";
-            outputPictureBox.Size = new Size(400, 365);
-            outputPictureBox.TabIndex = 2;
-            outputPictureBox.TabStop = false;
+            PictureBox.BackColor = SystemColors.Window;
+            PictureBox.Location = new Point(592, 28);
+            PictureBox.Name = "PictureBox";
+            PictureBox.Size = new Size(400, 365);
+            PictureBox.TabIndex = 2;
+            PictureBox.TabStop = false;
+            PictureBox.Paint += PictureBox_Paint;
             // 
             // booseForm
             // 
@@ -68,9 +70,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaGreen;
             ClientSize = new Size(1022, 498);
-            Controls.Add(outputPictureBox);
-            Controls.Add(runButton);
-            Controls.Add(inputTextBox);
+            Controls.Add(PictureBox);
+            Controls.Add(RunButton);
+            Controls.Add(ProgramWindow);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -78,15 +80,15 @@
             Name = "booseForm";
             Text = "Ashley's BOOSE Interpreter";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)outputPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox inputTextBox;
-        private Button runButton;
-        private PictureBox outputPictureBox;
+        private TextBox ProgramWindow;
+        private Button RunButton;
+        private PictureBox PictureBox;
     }
 }

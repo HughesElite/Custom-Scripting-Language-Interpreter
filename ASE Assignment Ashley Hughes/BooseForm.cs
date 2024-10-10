@@ -11,13 +11,33 @@ namespace ASE_Assignment_Ashley_Hughes
     /// </summary>
     public partial class booseForm : Form
     {
+        ICanvas myCanvas;
+        CommandFactory Factory;
+        StoredProgram Program;
+        Parser Parser;
+
+
+
+
 
         public booseForm()
         {
             InitializeComponent();
+            Debug.WriteLine(AboutBOOSE.about());
 
-            Bitmap myBitmap = new Bitmap(400, 365);
-            outputPictureBox.Image = myBitmap;
+            myCanvas = new AppCanvas();
+            myCanvas.MoveTo(100, 200);
+            myCanvas.PenColour = Color.Red;
+            myCanvas.DrawTo(200, 200);
+            myCanvas.Circle(50, false);
+            Refresh();
+
+            Factory = new CommandFactory();
+            Program = new StoredProgram(myCanvas);
+            Parser = new Parser(Factory, Program);
+
+
+
 
         }
 
@@ -28,6 +48,24 @@ namespace ASE_Assignment_Ashley_Hughes
 
         private void inputTextBox_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void PictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Bitmap b = (Bitmap)myCanvas.getBitmap();
+            g.DrawImageUnscaled(b, 0, 0);
+        }
+
+        private void RunButton_Click(object sender, EventArgs e)
+        {
+            String syntaxErrorList = "";
+            String runtimeErrorList = "";
+            String ProgramText = ProgramWindow.Text;
+
+            Parser.ParseProgram(ProgramText);
+
 
         }
     }
