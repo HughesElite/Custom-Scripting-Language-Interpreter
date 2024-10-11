@@ -26,11 +26,11 @@ namespace ASE_Assignment_Ashley_Hughes
             Debug.WriteLine(AboutBOOSE.about());
 
             myCanvas = new AppCanvas();
-            myCanvas.MoveTo(100, 100);
+          //  myCanvas.MoveTo(100, 100);
             myCanvas.PenColour = Color.Red;
-            myCanvas.DrawTo(200, 200);
-            myCanvas.Circle(50, false);
-            Refresh();
+         //  myCanvas.DrawTo(200, 200);
+          //  myCanvas.Circle(50, false);
+           
 
             Factory = new CommandFactory();
             Program = new StoredProgram(myCanvas);
@@ -38,15 +38,10 @@ namespace ASE_Assignment_Ashley_Hughes
 
 
 
-
+         
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void inputTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -66,6 +61,8 @@ namespace ASE_Assignment_Ashley_Hughes
 
             Parser.ParseProgram(ProgramText);
 
+            Program.Run();
+            Refresh();
 
         }
     }

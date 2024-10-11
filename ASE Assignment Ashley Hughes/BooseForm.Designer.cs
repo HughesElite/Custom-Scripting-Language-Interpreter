@@ -31,8 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(booseForm));
             ProgramWindow = new TextBox();
             RunButton = new Button();
-            PictureBox = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)PictureBox).BeginInit();
+            PictureWindow = new PictureBox();
+            errorOutputBox = new TextBox();
+            ((System.ComponentModel.ISupportInitialize)PictureWindow).BeginInit();
             SuspendLayout();
             // 
             // ProgramWindow
@@ -42,7 +43,6 @@
             ProgramWindow.Name = "ProgramWindow";
             ProgramWindow.Size = new Size(400, 365);
             ProgramWindow.TabIndex = 0;
-            ProgramWindow.TextChanged += inputTextBox_TextChanged;
             // 
             // RunButton
             // 
@@ -54,15 +54,23 @@
             RunButton.UseVisualStyleBackColor = true;
             RunButton.Click += RunButton_Click;
             // 
-            // PictureBox
+            // PictureWindow
             // 
-            PictureBox.BackColor = SystemColors.Window;
-            PictureBox.Location = new Point(592, 28);
-            PictureBox.Name = "PictureBox";
-            PictureBox.Size = new Size(400, 365);
-            PictureBox.TabIndex = 2;
-            PictureBox.TabStop = false;
-            PictureBox.Paint += PictureBox_Paint;
+            PictureWindow.BackColor = SystemColors.Window;
+            PictureWindow.Location = new Point(592, 28);
+            PictureWindow.Name = "PictureWindow";
+            PictureWindow.Size = new Size(400, 365);
+            PictureWindow.TabIndex = 2;
+            PictureWindow.TabStop = false;
+            PictureWindow.Paint += PictureBox_Paint;
+            // 
+            // errorOutputBox
+            // 
+            errorOutputBox.Location = new Point(131, 399);
+            errorOutputBox.Multiline = true;
+            errorOutputBox.Name = "errorOutputBox";
+            errorOutputBox.Size = new Size(294, 83);
+            errorOutputBox.TabIndex = 3;
             // 
             // booseForm
             // 
@@ -70,7 +78,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaGreen;
             ClientSize = new Size(1022, 498);
-            Controls.Add(PictureBox);
+            Controls.Add(errorOutputBox);
+            Controls.Add(PictureWindow);
             Controls.Add(RunButton);
             Controls.Add(ProgramWindow);
             DoubleBuffered = true;
@@ -80,7 +89,7 @@
             Name = "booseForm";
             Text = "Ashley's BOOSE Interpreter";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)PictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureWindow).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -89,6 +98,7 @@
 
         private TextBox ProgramWindow;
         private Button RunButton;
-        private PictureBox PictureBox;
+        private PictureBox PictureWindow;
+        private TextBox errorOutputBox;
     }
 }

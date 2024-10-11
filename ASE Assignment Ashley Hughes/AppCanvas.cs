@@ -20,7 +20,8 @@ namespace ASE_Assignment_Ashley_Hughes
         const int YSIZE = 365;
         Bitmap bm = new Bitmap(XSIZE, YSIZE); // Width and height of the bitmap
         Graphics g;
-        private int penSize = 5;
+        protected int penSize = 5;
+        
 
 
         public AppCanvas()
@@ -68,7 +69,7 @@ namespace ASE_Assignment_Ashley_Hughes
                  which refers to the Draw To command when called on Line 90
                 */
 
-                //  Pen = new Pen(penColour, penSize);
+               Pen = new Pen(penColour, penSize);
             }
         }
 
@@ -83,7 +84,7 @@ namespace ASE_Assignment_Ashley_Hughes
 
         public void Clear()
         {
-            //throw new NotImplementedException();
+           g.Clear(Color.White);
         }
 
         public void DrawTo(int toX, int toY)
@@ -111,12 +112,17 @@ namespace ASE_Assignment_Ashley_Hughes
 
         public void Rect(int width, int height, bool filled)
         {
-            throw new NotImplementedException();
+          if ( width <= 0 || height <= 0)
+                throw new CanvasException("Invalid rectangle parameters " + width + "," + height);
+            if (g != null)
+                if (!filled)
+                    g.DrawRectangle(Pen, xPos, yPos, width, height);
+
         }
 
         public void Reset()
         {
-            //throw new NotImplementedException();
+            xPos = yPos = 0;
         }
 
         public void Set(int xsize, int ysize)
@@ -138,7 +144,11 @@ namespace ASE_Assignment_Ashley_Hughes
 
         public void Tri(int width, int height)
         {
-            throw new NotImplementedException();
+            Point[] Triangle =
+                new Point[] { new Point(xPos, yPos), new Point(xPos + width, yPos),
+                        new Point(xPos, yPos + height) };
+            g.DrawPolygon(Pen, Triangle);
+
         }
 
         public void WriteText(string text)
