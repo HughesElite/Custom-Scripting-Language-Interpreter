@@ -32,7 +32,8 @@
             ProgramWindow = new TextBox();
             RunButton = new Button();
             PictureWindow = new PictureBox();
-            errorOutputBox = new TextBox();
+            ErrorWindow = new ListBox();
+            ClearButton = new Button();
             ((System.ComponentModel.ISupportInitialize)PictureWindow).BeginInit();
             SuspendLayout();
             // 
@@ -64,13 +65,24 @@
             PictureWindow.TabStop = false;
             PictureWindow.Paint += PictureBox_Paint;
             // 
-            // errorOutputBox
+            // ErrorWindow
             // 
-            errorOutputBox.Location = new Point(131, 399);
-            errorOutputBox.Multiline = true;
-            errorOutputBox.Name = "errorOutputBox";
-            errorOutputBox.Size = new Size(294, 83);
-            errorOutputBox.TabIndex = 3;
+            ErrorWindow.FormattingEnabled = true;
+            ErrorWindow.ItemHeight = 15;
+            ErrorWindow.Location = new Point(128, 408);
+            ErrorWindow.Name = "ErrorWindow";
+            ErrorWindow.Size = new Size(297, 79);
+            ErrorWindow.TabIndex = 4;
+            // 
+            // ClearButton
+            // 
+            ClearButton.Location = new Point(25, 447);
+            ClearButton.Name = "ClearButton";
+            ClearButton.Size = new Size(87, 28);
+            ClearButton.TabIndex = 5;
+            ClearButton.Text = "Clear";
+            ClearButton.UseVisualStyleBackColor = true;
+            ClearButton.Click += ClearButton_Click;
             // 
             // booseForm
             // 
@@ -78,7 +90,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaGreen;
             ClientSize = new Size(1022, 498);
-            Controls.Add(errorOutputBox);
+            Controls.Add(ClearButton);
+            Controls.Add(ErrorWindow);
             Controls.Add(PictureWindow);
             Controls.Add(RunButton);
             Controls.Add(ProgramWindow);
@@ -99,6 +112,7 @@
         private TextBox ProgramWindow;
         private Button RunButton;
         private PictureBox PictureWindow;
-        private TextBox errorOutputBox;
+        private ListBox ErrorWindow;
+        private Button ClearButton;
     }
 }

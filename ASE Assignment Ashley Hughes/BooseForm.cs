@@ -20,11 +20,8 @@ namespace ASE_Assignment_Ashley_Hughes
         {
             InitializeComponent();
             Debug.WriteLine(AboutBOOSE.about());
-
             myCanvas = new AppCanvas();
-            myCanvas.MoveTo(100, 100);
-            myCanvas.DrawTo(200, 200);
-            myCanvas.Circle(50, false);
+           
 
 
             Factory = new CommandFactory();
@@ -44,7 +41,25 @@ namespace ASE_Assignment_Ashley_Hughes
             Bitmap b = (Bitmap)myCanvas.getBitmap();
             g.DrawImageUnscaled(b, 0, 0);
         }
+        private void DisplayError(string message)
+        {
+            // Check if the errorListBox is not null
+            if (ErrorWindow != null)
+            {
+                // Add the new error message to the ListBox
+                ErrorWindow.Items.Add(message);
 
+                // Optionally scroll to the last item
+                ErrorWindow.SelectedIndex = ErrorWindow.Items.Count - 1; // Select the last item
+                ErrorWindow.TopIndex = ErrorWindow.Items.Count - 1; // Scroll to the last item
+            }
+        }
+
+        private void ClearTextBox()
+        {
+            ProgramWindow.Text = string.Empty; // Clears the text box
+
+        }
         private void RunButton_Click(object sender, EventArgs e)
         {
             try
@@ -58,10 +73,19 @@ namespace ASE_Assignment_Ashley_Hughes
             }
             catch (Exception ex)
             {
-              //  myCanvas.Clear();
-                myCanvas.WriteText("Error: " + ex.Message);
+                myCanvas.Clear();
                 Refresh();
+                DisplayError("Error: " + ex.Message);
+
             }
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            myCanvas.Clear();
+            ClearTextBox();
+            myCanvas.PenColour = Color.Black;
+            Refresh();
         }
     }
 }

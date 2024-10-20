@@ -62,7 +62,8 @@ namespace ASE_Assignment_Ashley_Hughes
             set
             {
                 penColour = (Color)value;
-               
+                Pen = new Pen(penColour, penSize);
+
             }
         }
 
@@ -78,6 +79,7 @@ namespace ASE_Assignment_Ashley_Hughes
         public void Clear()
         {
            g.Clear(Color.White);
+           
         }
 
         public void DrawTo(int toX, int toY)
@@ -125,7 +127,6 @@ namespace ASE_Assignment_Ashley_Hughes
             xPos = yPos = 0;
             XCanvasSize = xsize;
             g = Graphics.FromImage(bm);
-            Pen = new Pen (Color.Black, 2);
           
         }
 
@@ -142,20 +143,29 @@ namespace ASE_Assignment_Ashley_Hughes
             throw new NotImplementedException();
 
         }
+       
 
         public void WriteText(string text)
         {
+
             if (g != null)
             {
-                Font font = new Font("Arial", 11, FontStyle.Bold);
-                Brush brush = new SolidBrush(Color.Red);
-                RectangleF rect = new RectangleF(10, 10, XSIZE - 20, YSIZE - 20); // Define the area for the text
-                StringFormat format = new StringFormat();
-                format.Alignment = StringAlignment.Near; 
-                format.LineAlignment = StringAlignment.Near;
+                Font font = new Font("Arial", 11, FontStyle.Bold); 
+                Brush brush = new SolidBrush(Color.Black); 
 
-                g.DrawString(text, font, brush, rect, format);
+                g.DrawString(text, font, brush, xPos, yPos);
             }
         }
+        public void ProcessUserInput(string userInput)
+        {
+            if (!string.IsNullOrWhiteSpace(userInput))
+            {
+                WriteText(userInput); // Call the WriteText method to draw the input on the canvas
+            }
+        }
+
+
     }
+
 }
+
