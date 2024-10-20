@@ -11,7 +11,7 @@
 	At least 5 documented commits.
 	Readme.md file filled in correctly.
 	
-	- - - DONE - - - 
+	* * * DONE * * * 
 
 #### 2 Unit Tests for basic drawing commands above (1) 5 marks
 	Unit Test for moveto command (variables storing pen position are correct)
@@ -25,6 +25,9 @@
 	BOOSE DLL library installed 
 	call about method and display returned information in output/debug window
 	you can use System.Diagnostics to output to the debug window
+
+	* * * DONE * * * 
+ 
 #### 6 Basic drawing commands of the library are implemented (2) 10 marks
 	Moveto, circle, rect, pencolour, write.
 	Unrestricted drawing programs can be run (1unrestrictedDrawing.boose)
