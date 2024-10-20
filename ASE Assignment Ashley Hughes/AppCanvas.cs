@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BOOSE;
+using static System.Windows.Forms.DataFormats;
 
 namespace ASE_Assignment_Ashley_Hughes
 {
@@ -20,9 +21,7 @@ namespace ASE_Assignment_Ashley_Hughes
         const int YSIZE = 365;
         Bitmap bm = new Bitmap(XSIZE, YSIZE); // Width and height of the bitmap
         Graphics g;
-        protected int penSize = 5;
-        
-
+        protected int penSize = 2;
 
         public AppCanvas()
         {
@@ -63,13 +62,7 @@ namespace ASE_Assignment_Ashley_Hughes
             set
             {
                 penColour = (Color)value;
-
-                /*
-                 adding the below line fixes the error 'System.ArgumentNullException: 'Value cannot be null. Arg_ParamName_Name'
-                 which refers to the Draw To command when called on Line 90
-                */
-
-               Pen = new Pen(penColour, penSize);
+               
             }
         }
 
@@ -132,6 +125,8 @@ namespace ASE_Assignment_Ashley_Hughes
             xPos = yPos = 0;
             XCanvasSize = xsize;
             g = Graphics.FromImage(bm);
+            Pen = new Pen (Color.Black, 2);
+          
         }
 
         public void SetColour(int red, int green, int blue)
@@ -144,16 +139,23 @@ namespace ASE_Assignment_Ashley_Hughes
 
         public void Tri(int width, int height)
         {
-            Point[] Triangle =
-                new Point[] { new Point(xPos, yPos), new Point(xPos + width, yPos),
-                        new Point(xPos, yPos + height) };
-            g.DrawPolygon(Pen, Triangle);
+            throw new NotImplementedException();
 
         }
 
         public void WriteText(string text)
         {
-            throw new NotImplementedException();
+            if (g != null)
+            {
+                Font font = new Font("Arial", 11, FontStyle.Bold);
+                Brush brush = new SolidBrush(Color.Red);
+                RectangleF rect = new RectangleF(10, 10, XSIZE - 20, YSIZE - 20); // Define the area for the text
+                StringFormat format = new StringFormat();
+                format.Alignment = StringAlignment.Near; 
+                format.LineAlignment = StringAlignment.Near;
+
+                g.DrawString(text, font, brush, rect, format);
+            }
         }
     }
 }
