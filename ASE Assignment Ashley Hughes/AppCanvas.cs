@@ -9,7 +9,7 @@ using static System.Windows.Forms.DataFormats;
 
 namespace ASE_Assignment_Ashley_Hughes
 {
-    class AppCanvas : ICanvas
+    public class AppCanvas : ICanvas
     {
         private int xPos, yPos; //pen position when drawing
         int XCanvasSize, YCanvasSize;
