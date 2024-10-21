@@ -62,7 +62,6 @@ namespace ASE_Assignment_Ashley_Hughes
             set
             {
                 penColour = (Color)value;
-                Pen = new Pen(penColour, penSize);
 
             }
         }
@@ -71,6 +70,9 @@ namespace ASE_Assignment_Ashley_Hughes
         {
             if (radius < 0)
                 throw new CanvasException("Invalid circle radius " + radius);
+            if (Pen == null)
+                throw new CanvasException("Pen color is not set. Please set a pen color before drawing.");
+
             if (g != null)
                 if (!filled)
                     g.DrawEllipse(Pen, xPos - radius, yPos - radius, radius * 2, radius * 2);
@@ -126,6 +128,7 @@ namespace ASE_Assignment_Ashley_Hughes
             YCanvasSize = ysize;
             xPos = yPos = 0;
             XCanvasSize = xsize;
+            Pen = new Pen(Color.Black, 2);
             g = Graphics.FromImage(bm);
           
         }

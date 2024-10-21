@@ -40,6 +40,7 @@ namespace ASE_Assignment_Ashley_Hughes
             Graphics g = e.Graphics;
             Bitmap b = (Bitmap)myCanvas.getBitmap();
             g.DrawImageUnscaled(b, 0, 0);
+
         }
         private void DisplayError(string message)
         {
