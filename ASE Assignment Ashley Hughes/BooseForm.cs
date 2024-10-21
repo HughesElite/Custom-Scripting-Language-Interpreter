@@ -21,7 +21,7 @@ namespace ASE_Assignment_Ashley_Hughes
             InitializeComponent();
             Debug.WriteLine(AboutBOOSE.about());
             myCanvas = new AppCanvas();
-           
+
 
 
             Factory = new CommandFactory();

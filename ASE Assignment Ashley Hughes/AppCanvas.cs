@@ -80,8 +80,8 @@ namespace ASE_Assignment_Ashley_Hughes
 
         public void Clear()
         {
-           g.Clear(Color.White);
-           
+            g.Clear(Color.White);
+
         }
 
         public void DrawTo(int toX, int toY)
@@ -109,7 +109,7 @@ namespace ASE_Assignment_Ashley_Hughes
 
         public void Rect(int width, int height, bool filled)
         {
-          if ( width <= 0 || height <= 0)
+            if (width <= 0 || height <= 0)
                 throw new CanvasException("Invalid rectangle parameters " + width + "," + height);
             if (g != null)
                 if (!filled)
@@ -130,7 +130,7 @@ namespace ASE_Assignment_Ashley_Hughes
             XCanvasSize = xsize;
             Pen = new Pen(Color.Black, 2);
             g = Graphics.FromImage(bm);
-          
+
         }
 
         public void SetColour(int red, int green, int blue)
@@ -146,15 +146,15 @@ namespace ASE_Assignment_Ashley_Hughes
             throw new NotImplementedException();
 
         }
-       
+
 
         public void WriteText(string text)
         {
 
             if (g != null)
             {
-                Font font = new Font("Arial", 11, FontStyle.Bold); 
-                Brush brush = new SolidBrush(Color.Black); 
+                Font font = new Font("Arial", 11, FontStyle.Bold);
+                Brush brush = new SolidBrush(Color.Black);
 
                 g.DrawString(text, font, brush, xPos, yPos);
             }
