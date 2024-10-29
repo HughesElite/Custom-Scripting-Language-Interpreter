@@ -55,14 +55,17 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
             string[] commands = new string[]
             {
                 "moveto 100,100",
-                "pen 0,255,0",
+                "pen 0,255,255",
                 "circle 50",
                 "pen 255,0,0",
                 "moveto 150,50",
                 "rect 50,100"
             };
 
-            
+            // Initialize expected positions
+            int expectedX = 0;
+            int expectedY = 0;
+
             foreach (var command in commands)
             {
                 try
@@ -74,6 +77,7 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
                         case "moveto":
                             var moveToCoordinates = parts[1].Split(',');
                             canvas.MoveTo(int.Parse(moveToCoordinates[0]), int.Parse(moveToCoordinates[1]));
+                            canvas.MoveTo(expectedX, expectedY);
                             break;
                         case "pen":
                             var colorValues = parts[1].Split(',');
@@ -89,6 +93,13 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
                         default:
                             Assert.Fail($"Unknown command: {parts[0]}");
                             break;
+                    }
+
+                    if (parts[0].ToLower() != "pen")
+                    {
+                        // Check if the pen position matches the expected position
+                        Assert.AreEqual(expectedX, canvas.Xpos, $"Expected X position: {expectedX}, but got: {canvas.Xpos}");
+                        Assert.AreEqual(expectedY, canvas.Ypos, $"Expected Y position: {expectedY}, but got: {canvas.Ypos}");
                     }
                 }
                 catch (Exception ex)

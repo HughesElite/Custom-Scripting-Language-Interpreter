@@ -13,8 +13,8 @@ namespace ASE_Assignment_Ashley_Hughes
     {
         private int xPos, yPos; //pen position when drawing
         int XCanvasSize, YCanvasSize;
-        private Color penColour;
-        private Pen Pen;
+        protected Color penColour;
+        protected Pen Pen;
 
 
         const int XSIZE = 400;
@@ -70,9 +70,7 @@ namespace ASE_Assignment_Ashley_Hughes
         {
             if (radius < 0)
                 throw new CanvasException("Invalid circle radius " + radius);
-            if (Pen == null)
-                throw new CanvasException("Pen color is not set. Please set a pen color before drawing.");
-
+      
             if (g != null)
                 if (!filled)
                     g.DrawEllipse(Pen, xPos - radius, yPos - radius, radius * 2, radius * 2);
@@ -140,13 +138,12 @@ namespace ASE_Assignment_Ashley_Hughes
             penColour = Color.FromArgb(255, red, green, blue);
             Pen = new Pen(penColour, penSize);
         }
-
+ 
         public void Tri(int width, int height)
         {
             throw new NotImplementedException();
 
         }
-
 
         public void WriteText(string text)
         {

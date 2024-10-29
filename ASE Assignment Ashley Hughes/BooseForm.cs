@@ -21,18 +21,18 @@ namespace ASE_Assignment_Ashley_Hughes
             InitializeComponent();
             Debug.WriteLine(AboutBOOSE.about());
             myCanvas = new AppCanvas();
-
-
-
             Factory = new CommandFactory();
             Program = new StoredProgram(myCanvas);
             Parser = new Parser(Factory, Program);
+
+
+
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            ErrorOutputWindow.Text = AboutBOOSE.about();
         }
 
         private void PictureBox_Paint(object sender, PaintEventArgs e)
@@ -42,23 +42,20 @@ namespace ASE_Assignment_Ashley_Hughes
             g.DrawImageUnscaled(b, 0, 0);
 
         }
-        private void DisplayError(string message)
-        {
-            // Check if the errorListBox is not null
-            if (ErrorWindow != null)
-            {
-                // Add the new error message to the ListBox
-                ErrorWindow.Items.Add(message);
 
-                // Optionally scroll to the last item
-                ErrorWindow.SelectedIndex = ErrorWindow.Items.Count - 1; // Select the last item
-                ErrorWindow.TopIndex = ErrorWindow.Items.Count - 1; // Scroll to the last item
-            }
-        }
+     
 
-        private void ClearTextBox()
+        private void ClearAll()
         {
             ProgramWindow.Text = string.Empty; // Clears the text box
+            ErrorOutputWindow.Text = string.Empty;
+
+        }
+
+        private void ClearErrorOutputWindow()
+        {
+    
+            ErrorOutputWindow.Text = string.Empty;
 
         }
         private void RunButton_Click(object sender, EventArgs e)
@@ -66,6 +63,7 @@ namespace ASE_Assignment_Ashley_Hughes
             try
             {
                 myCanvas.Clear();
+                ClearErrorOutputWindow();
                 String ProgramText = ProgramWindow.Text;
                 Parser.ParseProgram(ProgramText);
                 Program.Run();
@@ -76,7 +74,9 @@ namespace ASE_Assignment_Ashley_Hughes
             {
                 myCanvas.Clear();
                 Refresh();
-                DisplayError("Error: " + ex.Message);
+                ErrorOutputWindow.Text = "Error: " + ex.Message;
+
+
 
             }
         }
@@ -84,7 +84,7 @@ namespace ASE_Assignment_Ashley_Hughes
         private void ClearButton_Click(object sender, EventArgs e)
         {
             myCanvas.Clear();
-            ClearTextBox();
+            ClearAll();
             myCanvas.PenColour = Color.Black;
             Refresh();
         }
