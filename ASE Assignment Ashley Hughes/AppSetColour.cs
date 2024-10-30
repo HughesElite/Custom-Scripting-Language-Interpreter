@@ -20,7 +20,7 @@ namespace ASE_Assignment_Ashley_Hughes
                 throw new ArgumentException("Three parameters are required: red, green, blue.");
             }
 
-            // Parse color values and ensure they are between 0 and 255
+            
             if (!int.TryParse(parameters[0], out red) || red < 0 || red > 255 ||
                 !int.TryParse(parameters[1], out green) || green < 0 || green > 255 ||
                 !int.TryParse(parameters[2], out blue) || blue < 0 || blue > 255)

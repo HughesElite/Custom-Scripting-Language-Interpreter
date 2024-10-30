@@ -41,7 +41,7 @@
 	Moveto, circle, rect, pencolour, write.
 	Unrestricted drawing programs can be run (1unrestrictedDrawing.boose)
 
-	* * * DONE * * * 
+	
 
 ### Tutor's Feedback
 

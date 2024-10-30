@@ -6,22 +6,20 @@ using BOOSE;
 
 namespace ASE_Assignment_Ashley_Hughes
 {
-    /// <summary>
-    /// The main form for all the functionality of the BOOSE Interpreter.
-    /// </summary>
+  
     public partial class booseForm : Form
     {
         ICanvas myCanvas;
-        CommandFactory Factory; // design pattern, a good way of creating classes, a factory which makes commands 
-        StoredProgram Program; // if parser can create the commands this is where it stores them
-        Parser Parser; // reads the text of the program and tries to make commands out of them, if it can it stores them in stored program and runs it
+        CommandFactory Factory; 
+        StoredProgram Program; 
+        Parser Parser; 
 
         public booseForm()
         {
             InitializeComponent();
             Debug.WriteLine(AboutBOOSE.about());
             myCanvas = new AppCanvas();
-            Factory = new CommandFactory();
+            Factory = new AppCommandFactory();
             Program = new StoredProgram(myCanvas);
             Parser = new Parser(Factory, Program);
 
@@ -47,7 +45,7 @@ namespace ASE_Assignment_Ashley_Hughes
 
         private void ClearAll()
         {
-            ProgramWindow.Text = string.Empty; // Clears the text box
+            ProgramWindow.Text = string.Empty; 
             ErrorOutputWindow.Text = string.Empty;
 
         }
@@ -66,18 +64,25 @@ namespace ASE_Assignment_Ashley_Hughes
                 ClearErrorOutputWindow();
                 String ProgramText = ProgramWindow.Text;
                 Parser.ParseProgram(ProgramText);
+
+                
+                ((AppCanvas)myCanvas).WriteText(ProgramText);
+
                 Program.Run();
                 Refresh();
-                Debug.WriteLine(" ** All inputs are currently valid ** ");
+              
+            }
+            catch (CanvasException ex) 
+            {
+                myCanvas.Clear();
+                Refresh();
+                ErrorOutputWindow.Text = "Canvas Error: " + ex.Message;
             }
             catch (Exception ex)
             {
                 myCanvas.Clear();
                 Refresh();
-                ErrorOutputWindow.Text = "Error: " + ex.Message;
-
-
-
+                ErrorOutputWindow.Text += "Error: " + ex.Message + Environment.NewLine;
             }
         }
 

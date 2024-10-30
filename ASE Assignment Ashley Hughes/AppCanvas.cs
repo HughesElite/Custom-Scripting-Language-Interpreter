@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,15 +12,16 @@ namespace ASE_Assignment_Ashley_Hughes
 {
     public class AppCanvas : ICanvas
     {
-        private int xPos, yPos; //pen position when drawing
+        private int xPos, yPos; 
         int XCanvasSize, YCanvasSize;
         protected Color penColour;
         protected Pen Pen;
+        protected Brush Brush;
 
 
         const int XSIZE = 400;
         const int YSIZE = 365;
-        Bitmap bm = new Bitmap(XSIZE, YSIZE); // Width and height of the bitmap
+        Bitmap bm = new Bitmap(XSIZE, YSIZE); 
         Graphics g;
         protected int penSize = 2;
 
@@ -70,7 +72,7 @@ namespace ASE_Assignment_Ashley_Hughes
         {
             if (radius < 0)
                 throw new CanvasException("Invalid circle radius " + radius);
-      
+
             if (g != null)
                 if (!filled)
                     g.DrawEllipse(Pen, xPos - radius, yPos - radius, radius * 2, radius * 2);
@@ -127,6 +129,7 @@ namespace ASE_Assignment_Ashley_Hughes
             xPos = yPos = 0;
             XCanvasSize = xsize;
             Pen = new Pen(Color.Black, 2);
+            Brush = new SolidBrush(Color.Black);
             g = Graphics.FromImage(bm);
 
         }
@@ -138,33 +141,24 @@ namespace ASE_Assignment_Ashley_Hughes
             penColour = Color.FromArgb(255, red, green, blue);
             Pen = new Pen(penColour, penSize);
         }
- 
+
         public void Tri(int width, int height)
         {
             throw new NotImplementedException();
 
         }
 
-        public void WriteText(string text)
+        public virtual void WriteText(string text)
         {
+            Debug.WriteLine($"Writing text: '{text}' at position ({Xpos}, {Ypos})");
 
             if (g != null)
             {
                 Font font = new Font("Arial", 11, FontStyle.Bold);
-                Brush brush = new SolidBrush(Color.Black);
-
-                g.DrawString(text, font, brush, xPos, yPos);
+                Brush brush = new SolidBrush(penColour); 
+                g.DrawString(text, font, brush, Xpos, Ypos); 
             }
         }
-        public void ProcessUserInput(string userInput)
-        {
-            if (!string.IsNullOrWhiteSpace(userInput))
-            {
-                WriteText(userInput); // Call the WriteText method to draw the input on the canvas
-            }
-        }
-
-
     }
 
 }
