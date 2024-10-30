@@ -13,6 +13,11 @@ namespace ASE_Assignment_Ashley_Hughes
     {
         public AppWrite() { }
 
+        /// <summary>
+        /// Checks the parameters for the write command.
+        /// </summary>
+        /// <param name="parameters">The parameters passed to the write command.</param>
+        /// <exception cref="CommandException">Thrown when parameters are invalid.</exception>
         public void CheckParameters(string[] parameters)
         {
             if (parameters.Length < 1)
@@ -23,7 +28,7 @@ namespace ASE_Assignment_Ashley_Hughes
 
         public void Compile()
         {
-
+            // TODO: Implement compile functionality for AppWrite command
         }
 
         public override void Execute()
@@ -35,9 +40,13 @@ namespace ASE_Assignment_Ashley_Hughes
 
         }
 
+        /// <summary>
+        /// Sets the stored program and parameters for the write command.
+        /// This method is not implemented yet.
+        /// </summary>
         public void Set(StoredProgram Program, string Params)
         {
-
+            // TODO: Implement Set functionality for AppWrite command
         }
     }
 }

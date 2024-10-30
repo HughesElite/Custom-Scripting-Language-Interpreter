@@ -10,9 +10,12 @@ using static System.Windows.Forms.DataFormats;
 
 namespace ASE_Assignment_Ashley_Hughes
 {
+    /// <summary>
+    /// Represents a canvas that can be drawn on for the BOOSE interpreter.
+    /// </summary>
     public class AppCanvas : ICanvas
     {
-        private int xPos, yPos; 
+        private int xPos, yPos;
         int XCanvasSize, YCanvasSize;
         protected Color penColour;
         protected Pen Pen;
@@ -21,15 +24,21 @@ namespace ASE_Assignment_Ashley_Hughes
 
         const int XSIZE = 400;
         const int YSIZE = 365;
-        Bitmap bm = new Bitmap(XSIZE, YSIZE); 
+        Bitmap bm = new Bitmap(XSIZE, YSIZE);
         Graphics g;
         protected int penSize = 2;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppCanvas"/> class.
+        /// </summary>
         public AppCanvas()
         {
             Set(XSIZE, YSIZE);
         }
 
+        /// <summary>
+        /// Gets or sets the current X position on the canvas.
+        /// </summary>
         public int Xpos
         {
             get
@@ -42,6 +51,10 @@ namespace ASE_Assignment_Ashley_Hughes
             }
 
         }
+
+        /// <summary>
+        /// Gets or sets the current Y position on the canvas.
+        /// </summary>
         public int Ypos
         {
             get
@@ -55,6 +68,9 @@ namespace ASE_Assignment_Ashley_Hughes
 
         }
 
+        /// <summary>
+        /// Gets or sets the pen color used for drawing on the bitmap.
+        /// </summary>
         public Object PenColour
         {
             get
@@ -68,6 +84,11 @@ namespace ASE_Assignment_Ashley_Hughes
             }
         }
 
+        /// <summary>
+        /// Draws a circle on the canvas.
+        /// </summary>
+        /// <param name="radius">The radius of the circle.</param>
+        /// <param name="filled">Indicates if the circle should be filled or not.</param>
         public void Circle(int radius, bool filled)
         {
             if (radius < 0)
@@ -78,12 +99,20 @@ namespace ASE_Assignment_Ashley_Hughes
                     g.DrawEllipse(Pen, xPos - radius, yPos - radius, radius * 2, radius * 2);
         }
 
+        /// <summary>
+        /// Clears canvas of any drawing or text.
+        /// </summary>
         public void Clear()
         {
             g.Clear(Color.White);
 
         }
 
+        /// <summary>
+        /// Draws a line to the specified coordinates.
+        /// </summary>
+        /// <param name="toX">The x-coordinate to draw to.</param>
+        /// <param name="toY">The y-coordinate to draw to.</param>
         public void DrawTo(int toX, int toY)
         {
             if (toX < 0 || toX > XCanvasSize || toY < 0 || toY > YCanvasSize)
@@ -94,11 +123,20 @@ namespace ASE_Assignment_Ashley_Hughes
             yPos = toY;
         }
 
+        /// <summary>
+        /// Gets the bitmap of the canvas.
+        /// </summary>
+        /// <returns>The bitmap representation of the canvas.</returns>
         public object getBitmap()
         {
             return bm;
         }
 
+        /// <summary>
+        /// Moves current position to the specified coordinates.
+        /// </summary>
+        /// <param name="x">The new x-coordinate.</param>
+        /// <param name="y">The new y-coordinate.</param>
         public void MoveTo(int x, int y)
         {
             if (x < 0 || x > XCanvasSize || y < 0 || y > YCanvasSize)
@@ -107,6 +145,12 @@ namespace ASE_Assignment_Ashley_Hughes
             yPos = y;
         }
 
+        /// <summary>
+        /// Draws a rectangle on the canvas.
+        /// </summary>
+        /// <param name="width">The width of the rectangle.</param>
+        /// <param name="height">The height of the rectangle.</param>
+        /// <param name="filled">Indicates if the rectangle should be filled or not.</param>
         public void Rect(int width, int height, bool filled)
         {
             if (width <= 0 || height <= 0)
@@ -117,11 +161,19 @@ namespace ASE_Assignment_Ashley_Hughes
 
         }
 
+        /// <summary>
+        /// Resets current position to 0, 0.
+        /// </summary>
         public void Reset()
         {
             xPos = yPos = 0;
         }
 
+        /// <summary>
+        /// Sets canvas size and initializes drawing tools.
+        /// </summary>
+        /// <param name="xsize">The width of the canvas.</param>
+        /// <param name="ysize">The height of the canvas.</param>
         public void Set(int xsize, int ysize)
         {
             XCanvasSize = xsize;
@@ -134,6 +186,10 @@ namespace ASE_Assignment_Ashley_Hughes
 
         }
 
+        /// <summary>
+        /// Sets the pen color using RGB values.
+        /// RGB minimum value is 0 and the max value is 255.
+        /// </summary>
         public void SetColour(int red, int green, int blue)
         {
             if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255)
@@ -142,21 +198,28 @@ namespace ASE_Assignment_Ashley_Hughes
             Pen = new Pen(penColour, penSize);
         }
 
+        /// <summary>
+        /// Draws a triangle on the canvas, NOT CURRENTLY IMPLEMENTED.
+        /// </summary>
+        /// <param name="width">The width of the triangle.</param>
+        /// <param name="height">The height of the triangle.</param>
         public void Tri(int width, int height)
         {
             throw new NotImplementedException();
 
         }
 
+        /// <summary>
+        /// Writes text on the canvas at the current position.
+        /// </summary>
+        /// <param name="text">The text to write.</param>
         public virtual void WriteText(string text)
         {
-            Debug.WriteLine($"Writing text: '{text}' at position ({Xpos}, {Ypos})");
-
             if (g != null)
             {
                 Font font = new Font("Arial", 11, FontStyle.Bold);
-                Brush brush = new SolidBrush(penColour); 
-                g.DrawString(text, font, brush, Xpos, Ypos); 
+                Brush brush = new SolidBrush(penColour);
+                g.DrawString(text, font, brush, Xpos, Ypos);
             }
         }
     }
