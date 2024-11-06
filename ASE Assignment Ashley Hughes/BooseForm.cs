@@ -26,7 +26,7 @@ namespace ASE_Assignment_Ashley_Hughes
             InitializeComponent();
             Debug.WriteLine(AboutBOOSE.about());
             myCanvas = new AppCanvas();
-            Factory = new AppCommandFactory();
+            Factory = new CommandFactory();
             Program = new StoredProgram(myCanvas);
             Parser = new Parser(Factory, Program);
         }
@@ -84,19 +84,33 @@ namespace ASE_Assignment_Ashley_Hughes
             {
                 myCanvas.Clear();
                 ClearErrorOutputWindow();
-                String ProgramText = ProgramWindow.Text;
-                Parser.ParseProgram(ProgramText);
-                ((AppCanvas)myCanvas).WriteText(ProgramText);
+
+                string programText = ProgramWindow.Text;
+
+                // Split program into lines
+                string[] lines = programText.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+
+                // Loop through lines containing "write"
+                foreach (var line in lines.Where(l => l.ToLower().Contains("write")))
+                {
+
+                    if (line.ToLower().Contains("write"))
+                    {
+                        string cleanedLine = line.Replace("write", "").Replace("\"", "").Trim(); // trims the word 'write' and quotation marks before drawing
+                        ((AppCanvas)myCanvas).WriteText(cleanedLine);  // Draw each line with "write"
+                    }
+                }
+                // Continue with the rest of the program
+                Parser.ParseProgram(programText);
                 Program.Run();
                 Refresh();
                 ErrorOutputWindow.Text = "No Errors";
-
             }
             catch (Exception ex)
             {
                 myCanvas.Clear();
                 Refresh();
-                ErrorOutputWindow.Text = "Error: " + ex.Message + Environment.NewLine; // // Displays the caught error message in the Error Output Window
+                ErrorOutputWindow.Text = "Error: " + ex.Message + Environment.NewLine;
             }
         }
 

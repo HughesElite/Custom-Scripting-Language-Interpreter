@@ -16,6 +16,7 @@ namespace ASE_Assignment_Ashley_Hughes
     public class AppCanvas : ICanvas
     {
         private int xPos, yPos;
+        private booseForm booseForm;
         int XCanvasSize, YCanvasSize;
         protected Color penColour;
         protected Pen Pen;
@@ -34,6 +35,11 @@ namespace ASE_Assignment_Ashley_Hughes
         public AppCanvas()
         {
             Set(XSIZE, YSIZE);
+        }
+
+        public AppCanvas(booseForm form)
+        {
+            booseForm = form;  // Store the reference to BooseForm
         }
 
         /// <summary>
@@ -89,7 +95,7 @@ namespace ASE_Assignment_Ashley_Hughes
         /// </summary>
         /// <param name="radius">The radius of the circle.</param>
         /// <param name="filled">Indicates if the circle should be filled or not.</param>
-        public void Circle(int radius, bool filled)
+        public virtual void Circle(int radius, bool filled)
         {
             if (radius < 0)
                 throw new CanvasException("Invalid circle radius " + radius);
@@ -190,7 +196,7 @@ namespace ASE_Assignment_Ashley_Hughes
         /// Sets the pen color using RGB values.
         /// RGB minimum value is 0 and the max value is 255.
         /// </summary>
-        public void SetColour(int red, int green, int blue)
+        public virtual void SetColour(int red, int green, int blue)
         {
             if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255)
                 throw new CanvasException("Invalid colour " + red + "," + green + "," + blue);
@@ -218,7 +224,7 @@ namespace ASE_Assignment_Ashley_Hughes
             if (g != null)
             {
                 Font font = new Font("Arial", 11, FontStyle.Bold);
-                Brush brush = new SolidBrush(penColour);
+                Brush brush = new SolidBrush(Color.Black);
                 g.DrawString(text, font, brush, Xpos, Ypos);
             }
         }
