@@ -6,7 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ASE_Assignment_Ashley_Hughes
+
 {
+    /// <summary>
+    /// Represents an override command to set the pen color, not currently implemented
+    /// </summary>
     public class AppSetColour : ICommand
     {
         public AppSetColour() { }

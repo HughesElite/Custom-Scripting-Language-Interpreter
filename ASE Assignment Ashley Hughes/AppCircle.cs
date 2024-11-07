@@ -6,7 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ASE_Assignment_Ashley_Hughes
+
 {
+    /// <summary>
+    /// Represents an override command to draw a circle to the canvas, not currently implemented
+    /// </summary>
     public class AppCircle : ICommand
     {
 
