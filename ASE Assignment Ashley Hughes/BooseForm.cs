@@ -7,7 +7,7 @@ namespace ASE_Assignment_Ashley_Hughes
     /// Represents the main windows form for the BOOSE Interpreter.
     /// Handles the graphical user interface and program execution.
     /// </summary>
-    public partial class booseForm : Form
+    public partial class BooseForm : Form
     {
         /// <summary>
         /// The canvas used for drawing graphics.
@@ -19,9 +19,9 @@ namespace ASE_Assignment_Ashley_Hughes
         Parser Parser;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="booseForm"/> class.
+        /// Initializes a new instance of the <see cref="BooseForm"/> class.
         /// </summary>
-        public booseForm()
+        public BooseForm()
         {
             InitializeComponent();
             Debug.WriteLine(AboutBOOSE.about());
@@ -38,7 +38,7 @@ namespace ASE_Assignment_Ashley_Hughes
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            ErrorOutputWindow.Text = AboutBOOSE.about();
+            HiddenTextBox.Text = AboutBOOSE.about();
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace ASE_Assignment_Ashley_Hughes
         private void ClearAll()
         {
             ProgramWindow.Text = string.Empty;
-            ErrorOutputWindow.Text = string.Empty;
+            HiddenTextBox.Text = string.Empty;
 
         }
 
@@ -69,7 +69,7 @@ namespace ASE_Assignment_Ashley_Hughes
         private void ClearErrorOutputWindow()
         {
 
-            ErrorOutputWindow.Text = string.Empty;
+            HiddenTextBox.Text = string.Empty;
 
         }
 
@@ -93,7 +93,6 @@ namespace ASE_Assignment_Ashley_Hughes
                 // Loop through lines containing "write"
                 foreach (var line in lines.Where(l => l.ToLower().Contains("write")))
                 {
-
                     if (line.ToLower().Contains("write"))
                     {
                         string cleanedLine = line.Replace("write", "").Replace("\"", "").Trim(); // trims the word 'write' and quotation marks before drawing
@@ -104,13 +103,21 @@ namespace ASE_Assignment_Ashley_Hughes
                 Parser.ParseProgram(programText);
                 Program.Run();
                 Refresh();
-                ErrorOutputWindow.Text = "No Errors";
+                // ErrorOutputWindow.Text = "Program is running fine";
+            }
+            catch (CanvasException ex)
+            {
+                //ErrorOutputWindow.Text += "Canvas Error: " + ex.Message + Environment.NewLine;
+                ((AppCanvas)myCanvas).DisplayErrorOnCanvas(ex.Message);
+                Refresh();
             }
             catch (Exception ex)
             {
                 myCanvas.Clear();
                 Refresh();
-                ErrorOutputWindow.Text = "Error: " + ex.Message + Environment.NewLine;
+                // ErrorOutputWindow.Text = "Error: " + ex.Message + Environment.NewLine;
+                ((AppCanvas)myCanvas).DisplayErrorOnCanvas(ex.Message);
+                Refresh();
             }
         }
 

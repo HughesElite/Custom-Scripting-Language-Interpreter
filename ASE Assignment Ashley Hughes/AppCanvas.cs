@@ -16,15 +16,15 @@ namespace ASE_Assignment_Ashley_Hughes
     public class AppCanvas : ICanvas
     {
         private int xPos, yPos;
-        private booseForm booseForm;
         int XCanvasSize, YCanvasSize;
         protected Color penColour;
         protected Pen Pen;
         protected Brush Brush;
 
 
-        const int XSIZE = 400;
+        const int XSIZE = 548;
         const int YSIZE = 365;
+        private int errorYPos = 10;
         Bitmap bm = new Bitmap(XSIZE, YSIZE);
         Graphics g;
         protected int penSize = 2;
@@ -35,11 +35,6 @@ namespace ASE_Assignment_Ashley_Hughes
         public AppCanvas()
         {
             Set(XSIZE, YSIZE);
-        }
-
-        public AppCanvas(booseForm form)
-        {
-            booseForm = form;  // Store the reference to BooseForm
         }
 
         /// <summary>
@@ -91,28 +86,41 @@ namespace ASE_Assignment_Ashley_Hughes
         }
 
         /// <summary>
+        /// Gets the bitmap of the canvas.
+        /// </summary>
+        /// <returns>The bitmap representation of the canvas.</returns>
+        public object getBitmap()
+        {
+            return bm;
+        }
+
+
+        /// <summary>
         /// Draws a circle on the canvas.
         /// </summary>
         /// <param name="radius">The radius of the circle.</param>
         /// <param name="filled">Indicates if the circle should be filled or not.</param>
         public virtual void Circle(int radius, bool filled)
         {
-            if (radius < 0)
-                throw new CanvasException("Invalid circle radius " + radius);
+            try
+            {
+                if (radius < 0)
+                {
+                    throw new CanvasException("Invalid circle radius " + radius);
+                }
 
-            if (g != null)
-                if (!filled)
+                if (g != null && !filled)
+                {
                     g.DrawEllipse(Pen, xPos - radius, yPos - radius, radius * 2, radius * 2);
+                }
+            }
+            catch (CanvasException ex)
+            {
+                // Draw the error message on the canvas
+                DrawErrorMessage(ex.Message);
+            }
         }
 
-        /// <summary>
-        /// Clears canvas of any drawing or text.
-        /// </summary>
-        public void Clear()
-        {
-            g.Clear(Color.White);
-
-        }
 
         /// <summary>
         /// Draws a line to the specified coordinates.
@@ -121,21 +129,20 @@ namespace ASE_Assignment_Ashley_Hughes
         /// <param name="toY">The y-coordinate to draw to.</param>
         public void DrawTo(int toX, int toY)
         {
-            if (toX < 0 || toX > XCanvasSize || toY < 0 || toY > YCanvasSize)
-                throw new CanvasException("Invalid screen position Draw To " + toX + "," + toY);
-            if (g != null)
-                g.DrawLine(Pen, xPos, yPos, toX, toY);
-            xPos = toX;
-            yPos = toY;
-        }
+            try
+            {
+                if (toX < 0 || toX > XCanvasSize || toY < 0 || toY > YCanvasSize)
+                    throw new CanvasException("Invalid screen position Draw To " + toX + "," + toY);
+                if (g != null)
+                    g.DrawLine(Pen, xPos, yPos, toX, toY);
+                xPos = toX;
+                yPos = toY;
+            }
+            catch (CanvasException ex)
+            {
 
-        /// <summary>
-        /// Gets the bitmap of the canvas.
-        /// </summary>
-        /// <returns>The bitmap representation of the canvas.</returns>
-        public object getBitmap()
-        {
-            return bm;
+                DrawErrorMessage(ex.Message);
+            }
         }
 
         /// <summary>
@@ -145,10 +152,18 @@ namespace ASE_Assignment_Ashley_Hughes
         /// <param name="y">The new y-coordinate.</param>
         public void MoveTo(int x, int y)
         {
-            if (x < 0 || x > XCanvasSize || y < 0 || y > YCanvasSize)
-                throw new CanvasException("Invalid screen position Move To" + x + "," + y);
-            xPos = x;
-            yPos = y;
+            try
+            {
+                if (x < 0 || x > XCanvasSize || y < 0 || y > YCanvasSize)
+                    throw new CanvasException("Invalid screen position Move To" + x + "," + y);
+                xPos = x;
+                yPos = y;
+            }
+            catch (CanvasException ex)
+            {
+
+                DrawErrorMessage(ex.Message);
+            }
         }
 
         /// <summary>
@@ -159,11 +174,19 @@ namespace ASE_Assignment_Ashley_Hughes
         /// <param name="filled">Indicates if the rectangle should be filled or not.</param>
         public void Rect(int width, int height, bool filled)
         {
-            if (width <= 0 || height <= 0)
-                throw new CanvasException("Invalid rectangle parameters " + width + "," + height);
-            if (g != null)
-                if (!filled)
-                    g.DrawRectangle(Pen, xPos, yPos, width, height);
+            try
+            {
+                if (width <= 0 || height <= 0)
+                    throw new CanvasException("Invalid rectangle parameters " + width + "," + height);
+                if (g != null)
+                    if (!filled)
+                        g.DrawRectangle(Pen, xPos, yPos, width, height);
+            }
+            catch (CanvasException ex)
+            {
+
+                DrawErrorMessage(ex.Message);
+            }
 
         }
 
@@ -198,10 +221,18 @@ namespace ASE_Assignment_Ashley_Hughes
         /// </summary>
         public virtual void SetColour(int red, int green, int blue)
         {
-            if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255)
-                throw new CanvasException("Invalid colour " + red + "," + green + "," + blue);
-            penColour = Color.FromArgb(255, red, green, blue);
-            Pen = new Pen(penColour, penSize);
+            try
+            {
+                if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255)
+                    throw new CanvasException("Invalid colour " + red + "," + green + "," + blue);
+                penColour = Color.FromArgb(255, red, green, blue);
+                Pen = new Pen(penColour, penSize);
+            }
+            catch (CanvasException ex)
+            {
+
+                DrawErrorMessage(ex.Message);
+            }
         }
 
         /// <summary>
@@ -228,7 +259,35 @@ namespace ASE_Assignment_Ashley_Hughes
                 g.DrawString(text, font, brush, Xpos, Ypos);
             }
         }
+
+        /// <summary>
+        /// Draws any of the canvas exceptions caught during drawing and displays them on the canvas.
+        /// </summary>
+        /// <param name="message"></param>
+        private void DrawErrorMessage(string message)
+        {
+            if (g != null)
+            {
+                Font font = new Font("Arial", 11, FontStyle.Regular);
+                Brush brush = new SolidBrush(Color.IndianRed);
+                g.DrawString("\nError: " + message, font, brush, new PointF(10, errorYPos));
+                errorYPos += 20;
+            }
+        }
+
+        public void DisplayErrorOnCanvas(string message)
+        {
+            DrawErrorMessage(message);
+        }
+
+        /// <summary>
+        /// Clears canvas of any drawing or text.
+        /// </summary>
+        public void Clear()
+        {
+            g.Clear(Color.White);
+            errorYPos = 10;
+
+        }
     }
-
 }
-

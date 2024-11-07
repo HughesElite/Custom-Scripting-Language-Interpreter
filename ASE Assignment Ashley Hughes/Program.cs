@@ -11,7 +11,7 @@ namespace ASE_Assignment_Ashley_Hughes
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new booseForm());
+            Application.Run(new BooseForm());
         }
     }
 }
