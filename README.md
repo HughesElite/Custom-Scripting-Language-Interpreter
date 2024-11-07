@@ -27,7 +27,7 @@
 
 #### 4 Exception Handling (1) 5 marks*
 
-
+	* * * DONE * * * 
 
 #### 5 Library (DLL) installed and working with reasonable user interface (2) 10 marks
 	Form interface with program window, output window and run button
@@ -41,7 +41,7 @@
 	Moveto, circle, rect, pencolour, write.
 	Unrestricted drawing programs can be run (1unrestrictedDrawing.boose)
 
-	
+	* * * DONE * * * 
 
 ### Tutor's Feedback
 

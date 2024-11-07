@@ -35,7 +35,7 @@
             ClearButton = new Button();
             ProgramWindowLabel = new Label();
             OutputWindowLabel = new Label();
-            HiddenTextBox = new TextBox();
+            AboutBooseBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)PictureWindow).BeginInit();
             SuspendLayout();
             // 
@@ -103,17 +103,17 @@
             OutputWindowLabel.TabIndex = 7;
             OutputWindowLabel.Text = "Output Window";
             // 
-            // HiddenTextBox
+            // AboutBooseBox
             // 
-            HiddenTextBox.BackColor = Color.SeaGreen;
-            HiddenTextBox.BorderStyle = BorderStyle.None;
-            HiddenTextBox.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            HiddenTextBox.ForeColor = Color.YellowGreen;
-            HiddenTextBox.Location = new Point(712, 447);
-            HiddenTextBox.Multiline = true;
-            HiddenTextBox.Name = "HiddenTextBox";
-            HiddenTextBox.Size = new Size(297, 159);
-            HiddenTextBox.TabIndex = 8;
+            AboutBooseBox.BackColor = Color.SeaGreen;
+            AboutBooseBox.BorderStyle = BorderStyle.None;
+            AboutBooseBox.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            AboutBooseBox.ForeColor = Color.YellowGreen;
+            AboutBooseBox.Location = new Point(712, 447);
+            AboutBooseBox.Multiline = true;
+            AboutBooseBox.Name = "AboutBooseBox";
+            AboutBooseBox.Size = new Size(297, 159);
+            AboutBooseBox.TabIndex = 8;
             // 
             // BooseForm
             // 
@@ -121,7 +121,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaGreen;
             ClientSize = new Size(1303, 635);
-            Controls.Add(HiddenTextBox);
+            Controls.Add(AboutBooseBox);
             Controls.Add(OutputWindowLabel);
             Controls.Add(ProgramWindowLabel);
             Controls.Add(ClearButton);
@@ -148,6 +148,6 @@
         private Button ClearButton;
         private Label ProgramWindowLabel;
         private Label OutputWindowLabel;
-        private TextBox HiddenTextBox;
+        private TextBox AboutBooseBox;
     }
 }

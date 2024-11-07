@@ -21,7 +21,6 @@ namespace ASE_Assignment_Ashley_Hughes
         protected Pen Pen;
         protected Brush Brush;
 
-
         const int XSIZE = 548;
         const int YSIZE = 365;
         private int errorYPos = 10;
@@ -86,6 +85,22 @@ namespace ASE_Assignment_Ashley_Hughes
         }
 
         /// <summary>
+        /// Sets canvas size and initializes drawing tools.
+        /// </summary>
+        /// <param name="xsize">The width of the canvas.</param>
+        /// <param name="ysize">The height of the canvas.</param>
+        public void Set(int xsize, int ysize)
+        {
+            XCanvasSize = xsize;
+            YCanvasSize = ysize;
+            xPos = yPos = 0;
+            XCanvasSize = xsize;
+            Pen = new Pen(Color.Black, 2);
+            Brush = new SolidBrush(Color.Black);
+            g = Graphics.FromImage(bm);
+        }
+
+        /// <summary>
         /// Gets the bitmap of the canvas.
         /// </summary>
         /// <returns>The bitmap representation of the canvas.</returns>
@@ -93,7 +108,6 @@ namespace ASE_Assignment_Ashley_Hughes
         {
             return bm;
         }
-
 
         /// <summary>
         /// Draws a circle on the canvas.
@@ -120,7 +134,6 @@ namespace ASE_Assignment_Ashley_Hughes
                 DrawErrorMessage(ex.Message);
             }
         }
-
 
         /// <summary>
         /// Draws a line to the specified coordinates.
@@ -187,7 +200,6 @@ namespace ASE_Assignment_Ashley_Hughes
 
                 DrawErrorMessage(ex.Message);
             }
-
         }
 
         /// <summary>
@@ -196,23 +208,6 @@ namespace ASE_Assignment_Ashley_Hughes
         public void Reset()
         {
             xPos = yPos = 0;
-        }
-
-        /// <summary>
-        /// Sets canvas size and initializes drawing tools.
-        /// </summary>
-        /// <param name="xsize">The width of the canvas.</param>
-        /// <param name="ysize">The height of the canvas.</param>
-        public void Set(int xsize, int ysize)
-        {
-            XCanvasSize = xsize;
-            YCanvasSize = ysize;
-            xPos = yPos = 0;
-            XCanvasSize = xsize;
-            Pen = new Pen(Color.Black, 2);
-            Brush = new SolidBrush(Color.Black);
-            g = Graphics.FromImage(bm);
-
         }
 
         /// <summary>
@@ -236,7 +231,7 @@ namespace ASE_Assignment_Ashley_Hughes
         }
 
         /// <summary>
-        /// Draws a triangle on the canvas, NOT CURRENTLY IMPLEMENTED.
+        /// Draws a triangle on the canvas ****** NOT CURRENTLY IMPLEMENTED ******
         /// </summary>
         /// <param name="width">The width of the triangle.</param>
         /// <param name="height">The height of the triangle.</param>
@@ -261,7 +256,7 @@ namespace ASE_Assignment_Ashley_Hughes
         }
 
         /// <summary>
-        /// Draws any of the canvas exceptions caught during drawing and displays them on the canvas.
+        /// Draws an error message on the canvas at the current error message position.
         /// </summary>
         /// <param name="message"></param>
         private void DrawErrorMessage(string message)
@@ -274,7 +269,10 @@ namespace ASE_Assignment_Ashley_Hughes
                 errorYPos += 20;
             }
         }
-
+        /// <summary>
+        /// calls the DrawErrorMessage method to display the error message on the canvas.
+        /// </summary>
+        /// <param name="message"></param>
         public void DisplayErrorOnCanvas(string message)
         {
             DrawErrorMessage(message);
@@ -288,6 +286,22 @@ namespace ASE_Assignment_Ashley_Hughes
             g.Clear(Color.White);
             errorYPos = 10;
 
+        }
+
+        /// <summary>
+        /// Processes the program text and handles the "write" command.
+        /// </summary>
+        /// <param name="programText">The program text to process.</param>
+        public void ProcessProgramText(string programText)
+        {
+            string[] lines = programText.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+
+            foreach (var line in lines.Where(l => l.ToLower().Contains("write")))
+            {
+                string cleanedLine = line.Replace("write", "").Replace("\"", "").Trim();
+                WriteText(cleanedLine);
+
+            }
         }
     }
 }

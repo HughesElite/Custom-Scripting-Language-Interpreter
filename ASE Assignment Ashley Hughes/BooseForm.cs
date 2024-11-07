@@ -38,7 +38,7 @@ namespace ASE_Assignment_Ashley_Hughes
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            HiddenTextBox.Text = AboutBOOSE.about();
+            AboutBooseBox.Text = AboutBOOSE.about();
         }
 
         /// <summary>
@@ -50,27 +50,23 @@ namespace ASE_Assignment_Ashley_Hughes
             Graphics g = e.Graphics;
             Bitmap b = (Bitmap)myCanvas.getBitmap();
             g.DrawImageUnscaled(b, 0, 0);
-
         }
 
         /// <summary>
-        /// Clears all content from the program and error output windows.
+        /// Clears all content from the program and output window.
         /// </summary>
         private void ClearAll()
         {
             ProgramWindow.Text = string.Empty;
-            HiddenTextBox.Text = string.Empty;
-
+            AboutBooseBox.Text = string.Empty;
         }
 
         /// <summary>
         /// Clears all content from only the error output window.
         /// </summary>
-        private void ClearErrorOutputWindow()
+        private void ClearAboutBooseBox()
         {
-
-            HiddenTextBox.Text = string.Empty;
-
+            AboutBooseBox.Text = string.Empty;
         }
 
         /// <summary>
@@ -83,31 +79,20 @@ namespace ASE_Assignment_Ashley_Hughes
             try
             {
                 myCanvas.Clear();
-                ClearErrorOutputWindow();
+                ClearAboutBooseBox();
 
                 string programText = ProgramWindow.Text;
 
-                // Split program into lines
-                string[] lines = programText.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                // Process the program text for "write" commands
+                ((AppCanvas)myCanvas).ProcessProgramText(programText);
 
-                // Loop through lines containing "write"
-                foreach (var line in lines.Where(l => l.ToLower().Contains("write")))
-                {
-                    if (line.ToLower().Contains("write"))
-                    {
-                        string cleanedLine = line.Replace("write", "").Replace("\"", "").Trim(); // trims the word 'write' and quotation marks before drawing
-                        ((AppCanvas)myCanvas).WriteText(cleanedLine);  // Draw each line with "write"
-                    }
-                }
                 // Continue with the rest of the program
                 Parser.ParseProgram(programText);
                 Program.Run();
                 Refresh();
-                // ErrorOutputWindow.Text = "Program is running fine";
             }
             catch (CanvasException ex)
             {
-                //ErrorOutputWindow.Text += "Canvas Error: " + ex.Message + Environment.NewLine;
                 ((AppCanvas)myCanvas).DisplayErrorOnCanvas(ex.Message);
                 Refresh();
             }
@@ -115,7 +100,6 @@ namespace ASE_Assignment_Ashley_Hughes
             {
                 myCanvas.Clear();
                 Refresh();
-                // ErrorOutputWindow.Text = "Error: " + ex.Message + Environment.NewLine;
                 ((AppCanvas)myCanvas).DisplayErrorOnCanvas(ex.Message);
                 Refresh();
             }
