@@ -36,7 +36,9 @@
             ProgramWindowLabel = new Label();
             OutputWindowLabel = new Label();
             AboutBooseBox = new TextBox();
+            BeerImage = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)PictureWindow).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)BeerImage).BeginInit();
             SuspendLayout();
             // 
             // ProgramWindow
@@ -115,12 +117,22 @@
             AboutBooseBox.Size = new Size(297, 159);
             AboutBooseBox.TabIndex = 8;
             // 
+            // BeerImage
+            // 
+            BeerImage.Image = (Image)resources.GetObject("BeerImage.Image");
+            BeerImage.Location = new Point(1044, 447);
+            BeerImage.Name = "BeerImage";
+            BeerImage.Size = new Size(216, 166);
+            BeerImage.TabIndex = 9;
+            BeerImage.TabStop = false;
+            // 
             // BooseForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaGreen;
             ClientSize = new Size(1303, 635);
+            Controls.Add(BeerImage);
             Controls.Add(AboutBooseBox);
             Controls.Add(OutputWindowLabel);
             Controls.Add(ProgramWindowLabel);
@@ -136,6 +148,7 @@
             Text = "Ashley's BOOSE Interpreter";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)PictureWindow).EndInit();
+            ((System.ComponentModel.ISupportInitialize)BeerImage).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -149,5 +162,6 @@
         private Label ProgramWindowLabel;
         private Label OutputWindowLabel;
         private TextBox AboutBooseBox;
+        private PictureBox BeerImage;
     }
 }

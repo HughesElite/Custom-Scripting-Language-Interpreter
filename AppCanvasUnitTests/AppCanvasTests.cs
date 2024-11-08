@@ -42,8 +42,8 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
         public void DrawTo_UpdatesPositionAndDrawsLine()
         {
             // Arrange
-            int startX = 50;
-            int startY = 50;
+            int startX = 0;
+            int startY = 0;
             int endX = 150;
             int endY = 100;
 

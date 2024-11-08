@@ -247,6 +247,7 @@ namespace ASE_Assignment_Ashley_Hughes
         /// <param name="text">The text to write.</param>
         public virtual void WriteText(string text)
         {
+
             if (g != null)
             {
                 Font font = new Font("Arial", 11, FontStyle.Bold);
@@ -298,9 +299,21 @@ namespace ASE_Assignment_Ashley_Hughes
 
             foreach (var line in lines.Where(l => l.ToLower().Contains("write")))
             {
-                string cleanedLine = line.Replace("write", "").Replace("\"", "").Trim();
-                WriteText(cleanedLine);
+                try
+                {
+                    string cleanedLine = line.Replace("write", "").Replace("\"", "").Trim();
 
+                    if (string.IsNullOrEmpty(cleanedLine))
+                    {
+                        throw new CanvasException("Write command requires text to be specified.");
+                    }
+
+                    WriteText(cleanedLine);
+                }
+                catch (CanvasException ex)
+                {
+                    DrawErrorMessage(ex.Message);
+                }
             }
         }
     }
