@@ -3,6 +3,9 @@ using System.Drawing;
 
 namespace ASE_Assignment_Ashley_Hughes.Tests
 {
+    /// <summary>
+    /// MSTest class for testing the AppCanvas class.
+    /// </summary>
     [TestClass]
     public class AppCanvasTests
     {
