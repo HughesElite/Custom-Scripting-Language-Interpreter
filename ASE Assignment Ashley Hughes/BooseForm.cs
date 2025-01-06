@@ -32,7 +32,7 @@ namespace ASE_Assignment_Ashley_Hughes
         }
 
         /// <summary>
-        /// Loads the form and initializes the error output window with information about the BOOSE language.
+        /// Loads the form and initializes the AboutBooseBox window with information about the BOOSE language.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>

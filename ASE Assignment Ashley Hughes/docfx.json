@@ -6,6 +6,7 @@
           "files": [
             "**.csproj"
           ],
+		    "exclude": ["**/*.Designer.cs"],
           "src": "C:\\Users\\Hughes Portable Rig\\source\\repos 2024 to 2025\\ASE Assignment Ashley Hughes"
         }
       ],
