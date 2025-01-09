@@ -24,14 +24,16 @@ namespace ASE_Assignment_Ashley_Hughes
             commandType = commandType.ToLower().Trim();
             if (commandType.Equals("int"))
                 return new AppInt();
-          //  if (commandType.Equals("circle"))
-            //    return new AppCircle();
+            if (commandType.Equals("real"))
+                return new AppReal();
 
 
 
-                return base.MakeCommand(commandType);  // Call the base class's MakeCommand method if no matching command type is found
+            return base.MakeCommand(commandType);  // Call the base class's MakeCommand method if no matching command type is found
 
-          
+            throw new FactoryException(" No such command \'" + commandType + "\'"); // Throw an exception if the command type is unrecognized
+
+
         }
 
     }

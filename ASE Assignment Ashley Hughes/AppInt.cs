@@ -1,4 +1,6 @@
-﻿namespace BOOSE
+﻿using BOOSE;
+
+namespace ASE_Assignment_Ashley_Hughes
 {
     public class AppInt : Int
     {
@@ -16,11 +18,18 @@
             // This means AppInt will not have the restriction counter logic.
         }
 
-       
+        public override void Compile()
+        {
+            base.Compile();
+            base.Program.AddVariable(this);
+        }
+
         public override void Execute()
         {
             base.Execute();  // Kept the original execute logic from Int
          
         }
+
+        
     }
 }

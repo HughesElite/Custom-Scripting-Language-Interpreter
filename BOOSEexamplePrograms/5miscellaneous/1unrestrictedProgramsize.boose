@@ -1,13 +1,16 @@
-﻿*too many lines, the squares will not be drawn without replacing StoredProgram and Parser.
+﻿moveto 200,200
 circle 100
 circle 50
-circle 100
-circle 50
-circle 100
-circle 50
-circle 100
-circle 50
-circle 100
-circle 50
+pen 0,0,255
+circle 110
+circle 555
+circle 120
+pen 0,255,0
+circle 560
+circle 130
+pen 128,255,0
+circle 65
+circle 140
+circle 70
 rect 100,100
 rect 200,200

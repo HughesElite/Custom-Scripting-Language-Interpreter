@@ -95,7 +95,7 @@ namespace ASE_Assignment_Ashley_Hughes
             YCanvasSize = ysize;
             xPos = yPos = 0;
             XCanvasSize = xsize;
-            Pen = new Pen(Color.Black, 2);
+            Pen = new Pen(Color.Red, 3);
             Brush = new SolidBrush(Color.Black);
             g = Graphics.FromImage(bm);
         }
@@ -316,5 +316,6 @@ namespace ASE_Assignment_Ashley_Hughes
                 }
             }
         }
+
     }
 }
