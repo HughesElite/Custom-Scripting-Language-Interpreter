@@ -21,14 +21,17 @@ namespace ASE_Assignment_Ashley_Hughes
         /// <returns>An ICommand instance corresponding to the command type.</returns>
         public override ICommand MakeCommand(string commandType)
         {
-       
+            commandType = commandType.ToLower().Trim();
+            if (commandType.Equals("int"))
+                return new AppInt();
+          //  if (commandType.Equals("circle"))
+            //    return new AppCircle();
 
-  
-  
 
-            return base.MakeCommand(commandType);  // Call the base class's MakeCommand method if no matching command type is found
 
-            throw new FactoryException(" No such command \'" + commandType + "\'"); // Throw an exception if the command type is unrecognized
+                return base.MakeCommand(commandType);  // Call the base class's MakeCommand method if no matching command type is found
+
+          
         }
 
     }
