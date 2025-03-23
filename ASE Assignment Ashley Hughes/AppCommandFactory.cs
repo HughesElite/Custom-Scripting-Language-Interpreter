@@ -50,9 +50,9 @@ namespace ASE_Assignment_Ashley_Hughes
                 return new AppInt();
 
             if (commandType.Equals("real"))
-                return new Real();
+                return new AppReal();
             if (commandType.Equals("write"))
-                return new Write();
+                return new AppWrite();
 
             // if (commandType.Equals("array"))
             //    return new AppArray();

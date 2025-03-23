@@ -80,15 +80,16 @@ namespace ASE_Assignment_Ashley_Hughes
             {
                 myCanvas.Clear();
                 ClearAboutBooseBox();
-
                 string programText = ProgramWindow.Text;
-
-                // Process the program text for "write" commands
-                ((AppCanvas)myCanvas).ProcessProgramText(programText);
 
                 // Continue with the rest of the program
                 Parser.ParseProgram(programText);
                 Program.Run();
+
+                // Process the program text for "write" commands
+                ((AppCanvas)myCanvas).ProcessProgramText(programText);
+
+        
                 Refresh();
             }
             catch (CanvasException ex)

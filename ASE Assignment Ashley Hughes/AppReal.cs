@@ -1,52 +1,54 @@
-﻿//using BOOSE;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿using BOOSE;
 
-//namespace ASE_Assignment_Ashley_Hughes
-//{
+namespace ASE_Assignment_Ashley_Hughes
+{
+    /// <summary>
+    /// Extended Real Number Variable class that builds upon the existing BOOSE.Real class.
+    /// </summary>
+    public class AppReal : Real
+    {
+        /// <summary>
+        /// Constructor for the extended Real class.
+        /// </summary>
+        public AppReal() : base()
+        {
+            // Any additional initialization can go here
+        }
 
-//    public class AppReal : Real
-//    {
-//        private static int a;
-//        private double b;
-//        public new double Value
-//        {
-//            get
-//            {
-//                return b;
-//            }
-//            set
-//            {
-//                b = value;
-//            }
-//        }
-//        //public AppReal() : base()
-//        {
-//            // Skip restriction logic by overriding Restrictions
-//        }
+        /// <summary>
+        /// Override the Restrictions method if you need to modify its behavior
+        /// </summary>
+        public override void Restrictions()
+        {
+            // If you want to change the restriction behavior
+            // Otherwise, you can remove this override and use the base implementation
+           // base.Restrictions();
+        }
 
-//        public override void Restrictions()
-//        {
-//            // Do nothing to bypass the restriction logic
-//        }
+        /// <summary>
+        /// Override the Compile method to add additional functionality
+        /// </summary>
+        public override void Compile()
+        {
+            // Add any pre-compilation logic here
 
-//        public override void Compile()
-//        {
+            base.Compile();
 
-//            base.Compile();
-//            base.Program.AddVariable(this);
+            // Add any post-compilation logic here
+        }
 
-//            // Additional customization can go here if needed
-//        }
-//        public override void Execute()
-//        {
-//            // Retain the existing Execute logic
-//            base.Execute();
+        /// <summary>
+        /// Override the Execute method to add additional functionality
+        /// </summary>
+        public override void Execute()
+        {
+            // Add any pre-execution logic here
 
-//            // Additional customization can go here if needed
-//        }
-//    }
-//}
+            base.Execute();
+
+            // Add any post-execution logic here
+        }
+
+        // Add any additional methods or properties specific to your implementation
+    }
+}

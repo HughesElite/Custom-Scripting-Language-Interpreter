@@ -252,7 +252,7 @@ namespace ASE_Assignment_Ashley_Hughes
             {
                 Font font = new Font("Arial", 11, FontStyle.Bold);
                 Brush brush = new SolidBrush(Color.Black);
-                g.DrawString(text, font, brush, Xpos, Ypos);
+                g.DrawString(text, font, brush, xPos, yPos);
             }
         }
 
@@ -288,7 +288,6 @@ namespace ASE_Assignment_Ashley_Hughes
             errorYPos = 10;
 
         }
-
         /// <summary>
         /// Processes the program text and handles the "write" command.
         /// </summary>
@@ -297,18 +296,34 @@ namespace ASE_Assignment_Ashley_Hughes
         {
             string[] lines = programText.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
-            foreach (var line in lines.Where(l => l.ToLower().Contains("write")))
+            // First, process variable declarations to build your variable dictionary
+            Dictionary<string, double> variables = new Dictionary<string, double>();
+            foreach (var line in lines)
+            {
+                if (line.Trim().StartsWith("real "))
+                {
+                    ProcessVariableDeclaration(line, variables);
+                }
+            }
+
+            // Then process write commands
+            foreach (var line in lines.Where(l => l.Trim().ToLower().StartsWith("write")))
             {
                 try
                 {
-                    string cleanedLine = line.Replace("write", "").Replace("\"", "").Trim();
+                    // Extract the parameter part (everything after "write")
+                    string expression = line.Trim().Substring(5).Trim();
 
-                    if (string.IsNullOrEmpty(cleanedLine))
+                    if (string.IsNullOrEmpty(expression))
                     {
                         throw new CanvasException("Write command requires text to be specified.");
                     }
 
-                    WriteText(cleanedLine);
+                    // Evaluate the expression
+                    double result = EvaluateExpression(expression, variables);
+
+                    // Write the result
+                    WriteText(result.ToString());
                 }
                 catch (CanvasException ex)
                 {
@@ -317,5 +332,65 @@ namespace ASE_Assignment_Ashley_Hughes
             }
         }
 
+        private void ProcessVariableDeclaration(string line, Dictionary<string, double> variables)
+        {
+            // Remove "real " prefix
+            string declaration = line.Substring(5).Trim();
+
+            // Check if it's an assignment
+            if (declaration.Contains("="))
+            {
+                string[] parts = declaration.Split('=');
+                string variableName = parts[0].Trim();
+                string valueExpression = parts[1].Trim();
+
+                // Try to parse the value
+                double value;
+                if (double.TryParse(valueExpression, out value))
+                {
+                    variables[variableName] = value;
+                }
+                else
+                {
+                    // This handles expressions like "2 * pi * radius"
+                    value = EvaluateExpression(valueExpression, variables);
+                    variables[variableName] = value;
+                }
+            }
+            else
+            {
+                // Just a declaration without assignment
+                variables[declaration] = 0; // Default value
+            }
+        }
+
+        private double EvaluateExpression(string expression, Dictionary<string, double> variables)
+        {
+            // This is a simplified expression evaluator
+            // You might want to use a proper expression parsing library
+
+            // First, replace all variable names with their values
+            foreach (var variable in variables)
+            {
+                expression = expression.Replace(variable.Key, variable.Value.ToString());
+            }
+
+            // Now the expression should contain only numbers and operators
+            // Use a library or implement a simple evaluator to calculate the result
+            // For example, you could use DataTable.Compute() or NCalc
+
+            // Simple example using DataTable.Compute()
+            System.Data.DataTable table = new System.Data.DataTable();
+            try
+            {
+                // This evaluates mathematical expressions
+                return Convert.ToDouble(table.Compute(expression, ""));
+            }
+            catch
+            {
+                // If evaluation fails, return the expression as is
+                return 0;
+            }
+        }
     }
 }
