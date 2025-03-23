@@ -9,6 +9,7 @@ namespace ASE_Assignment_Ashley_Hughes
 {
     /// <summary>
     /// Factory class for creating command instances based on command types.
+    /// Extends original BOOSE command factory.
     /// </summary>
     public class AppCommandFactory : CommandFactory
     {
@@ -22,16 +23,15 @@ namespace ASE_Assignment_Ashley_Hughes
         public override ICommand MakeCommand(string commandType)
         {
             commandType = commandType.ToLower().Trim();
-            if (commandType.Equals("int"))
+            if (commandType.Equals("int")) //origianl replaces old int command
                 return new AppInt();
-            if (commandType.Equals("real"))
-                return new AppReal();
+
 
 
 
             return base.MakeCommand(commandType);  // Call the base class's MakeCommand method if no matching command type is found
 
-            throw new FactoryException(" No such command \'" + commandType + "\'"); // Throw an exception if the command type is unrecognized
+            throw new FactoryException(" No such command \'" + commandType + "\'"); // Throw an exception if the command type is unrecognised
 
 
         }
