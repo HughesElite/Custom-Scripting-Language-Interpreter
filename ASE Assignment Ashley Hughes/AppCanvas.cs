@@ -11,7 +11,7 @@ using static System.Windows.Forms.DataFormats;
 namespace ASE_Assignment_Ashley_Hughes
 {
     /// <summary>
-    /// Represents a canvas that can be drawn on for the BOOSE interpreter.!
+    /// Represents a canvas that can be drawn on for the BOOSE interpreter.
     /// </summary>
     public class AppCanvas : ICanvas
     {
