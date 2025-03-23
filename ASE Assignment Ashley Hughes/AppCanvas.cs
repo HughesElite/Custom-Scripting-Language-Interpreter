@@ -306,29 +306,71 @@ namespace ASE_Assignment_Ashley_Hughes
                 }
             }
 
-            // Then process write commands
-            foreach (var line in lines.Where(l => l.Trim().ToLower().StartsWith("write")))
+            // Track the current position for write commands
+            int currentX = xPos; // Use the initial position values
+            int currentY = yPos;
+
+            // Process all commands in sequence
+            foreach (var line in lines)
             {
+                string trimmedLine = line.Trim().ToLower();
+
                 try
                 {
-                    // Extract the parameter part (everything after "write")
-                    string expression = line.Trim().Substring(5).Trim();
-
-                    if (string.IsNullOrEmpty(expression))
+                    // Handle moveto commands to update position
+                    if (trimmedLine.StartsWith("moveto"))
                     {
-                        throw new CanvasException("Write command requires text to be specified.");
+                        string coordinates = trimmedLine.Substring(6).Trim();
+                        string[] parts = coordinates.Split(',');
+
+                        if (parts.Length == 2 && int.TryParse(parts[0], out int x) && int.TryParse(parts[1], out int y))
+                        {
+                            currentX = x;
+                            currentY = y;
+                        }
+                        else
+                        {
+                            throw new CanvasException("Invalid coordinates for moveto command.");
+                        }
                     }
+                    // Handle write commands
+                    else if (trimmedLine.StartsWith("write"))
+                    {
+                        // Extract the parameter part (everything after "write")
+                        string expression = trimmedLine.Substring(5).Trim();
 
-                    // Evaluate the expression
-                    double result = EvaluateExpression(expression, variables);
+                        if (string.IsNullOrEmpty(expression))
+                        {
+                            throw new CanvasException("Write command requires text to be specified.");
+                        }
 
-                    // Write the result
-                    WriteText(result.ToString());
+                        // Evaluate the expression
+                        double result = EvaluateExpression(expression, variables);
+
+                        // Write the result at the current position
+                        WriteTextAtPosition(result.ToString(), currentX, currentY);
+                    }
                 }
                 catch (CanvasException ex)
                 {
                     DrawErrorMessage(ex.Message);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Writes text at a specific position without changing the current canvas position.
+        /// </summary>
+        /// <param name="text">The text to write.</param>
+        /// <param name="x">The x-coordinate.</param>
+        /// <param name="y">The y-coordinate.</param>
+        private void WriteTextAtPosition(string text, int x, int y)
+        {
+            if (g != null)
+            {
+                Font font = new Font("Arial", 11, FontStyle.Bold);
+                Brush brush = new SolidBrush(penColour);
+                g.DrawString(text, font, brush, x, y);
             }
         }
 
