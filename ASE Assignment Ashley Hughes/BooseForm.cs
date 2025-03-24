@@ -25,7 +25,11 @@ namespace ASE_Assignment_Ashley_Hughes
         {
             InitializeComponent();
             Debug.WriteLine(AboutBOOSE.about());
+
             myCanvas = new AppCanvas();
+
+            // Set the static canvas for AppWrite
+            AppWrite.SetCanvas(myCanvas);
             Factory = new AppCommandFactory();
             Program = new StoredProgram(myCanvas);
             Parser = new Parser(Factory, Program);
@@ -82,17 +86,26 @@ namespace ASE_Assignment_Ashley_Hughes
                 ClearAboutBooseBox();
                 string programText = ProgramWindow.Text;
 
+                // Reset the program state before running new code
+                Program = new StoredProgram(myCanvas);
+                Parser = new Parser(Factory, Program);
+
                 // Continue with the rest of the program
                 Parser.ParseProgram(programText);
                 Program.Run();
 
-                // Process the program text for "write" commands
-                ((AppCanvas)myCanvas).ProcessProgramText(programText);
+           
 
         
                 Refresh();
             }
             catch (CanvasException ex)
+            {
+                ((AppCanvas)myCanvas).DisplayErrorOnCanvas(ex.Message);
+                Refresh();
+            }
+
+            catch (BOOSEException ex) 
             {
                 ((AppCanvas)myCanvas).DisplayErrorOnCanvas(ex.Message);
                 Refresh();
@@ -104,6 +117,7 @@ namespace ASE_Assignment_Ashley_Hughes
                 ((AppCanvas)myCanvas).DisplayErrorOnCanvas(ex.Message);
                 Refresh();
             }
+
         }
 
         /// <summary>

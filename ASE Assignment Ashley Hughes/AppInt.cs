@@ -1,32 +1,45 @@
 ﻿using BOOSE;
+using System;
 
-namespace ASE_Assignment_Ashley_Hughes
+public class AppInt : Int
 {
-    public class AppInt : Int
+    private static int instanceCounter;
+
+    public AppInt()
     {
-        // Constructor to call the base class constructor
-        public AppInt() : base()
-        {
-            
-        }
-
-        public override void Restrictions()
-        {
-            // Remove the restriction logic by not calling base.Restrictions()
-        }
-
-        public override void Compile()
-        {
-            base.Compile();
-            base.Program.AddVariable(this);
-        }
-
-        public override void Execute()
-        {
-            base.Execute();  // Kept the original execute logic from Int
-         
-        }
-
-        
+        Restrictions();
     }
+
+    public override void Restrictions()
+    {
+        // Limit the number of instances (similar to other BOOSE classes)
+        if (instanceCounter++ > 5000000)
+        {
+            throw new RestrictionException("Maximum number of Int instances exceeded");
+        }
+    }
+
+    public override void Compile()
+    {
+        base.Compile();
+        base.Program.AddVariable(this);
+    }
+
+    public override void Execute()
+    {
+        base.Execute();
+
+        // Attempt to parse the evaluated expression
+        if (!int.TryParse(evaluatedExpression, out int parsedValue))
+        {
+            throw new StoredProgramException("Invalid integer format");
+        }
+
+        // Update the value and the program variable
+        Value = parsedValue;
+        base.Program.UpdateVariable(varName, Value);
+    }
+
+    // Property to match the typical pattern in BOOSE classes
+    public new int Value { get; private set; }
 }

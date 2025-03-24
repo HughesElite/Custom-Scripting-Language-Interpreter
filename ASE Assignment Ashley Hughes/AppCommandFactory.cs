@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,58 +24,37 @@ namespace ASE_Assignment_Ashley_Hughes
         public override ICommand MakeCommand(string commandType)
         {
             commandType = commandType.ToLower().Trim();
-            if (commandType.Equals("moveto"))
-                return new MoveTo();
-            if (commandType.Equals("drawto"))
-                return new DrawTo();
-            if (commandType.Equals("circle"))
-                return new Circle();
-            if (commandType.Equals("rect"))
-                return new Rect();
-            if (commandType.Equals("pen"))
-                return new PenColour();
-            if (commandType.Equals("eval"))
-                return new Evaluation();
-            if (commandType.Equals("if"))
-                return new If();
-            if (commandType.Equals("end"))
-                return new End();
-            if (commandType.Equals("else"))
-                return new Else();
-            if (commandType.Equals("while"))
-                return new While();
-            if (commandType.Equals("for"))
-                return new For();
 
-            if (commandType.Equals("int")) //origianl replaces old int command
+            if (commandType == "int")
                 return new AppInt();
-
-            if (commandType.Equals("real"))
+            if (commandType == "real")
                 return new AppReal();
-            if (commandType.Equals("write"))
+            if (commandType == "write")
                 return new AppWrite();
+            if (commandType == "array")
+                return new AppArray();
 
-            //if (commandType.Equals("array"))
-            //   return new AppArray();
 
-            if (commandType.Equals("poke"))
-                return new Poke();
-            if (commandType.Equals("cast"))
-                return new Cast();
-            if (commandType.Equals("method"))
-                return new Method();
-            if (commandType.Equals("call"))
-                return new Call();
-            if (commandType.Equals("peek"))
-                return new Peek();
 
-            throw new FactoryException(" No such command \'" + commandType + "\'"); // Throw an exception if the command type is unrecognised
+            return (base.MakeCommand(commandType));
 
-            return base.MakeCommand(commandType);  // Call the base class's MakeCommand method if no matching command type is found
-
+            //throw new FactoryException("No such command \'"+commandType+"\'");
 
         }
-
     }
-
 }
+
+
+
+
+           // //var command = base.MakeCommand(commandType);
+           // //if (command != null)
+           // //    return command;
+
+           //// throw new FactoryException(" No such command \'" + commandType + "\'");
+
+
+           // return base.MakeCommand(commandType);  // Call the base class's MakeCommand method if no matching command type is found
+
+           // throw new FactoryException(" No such command \'" + commandType + "\'"); // Throw an exception if the command type is unrecognised
+

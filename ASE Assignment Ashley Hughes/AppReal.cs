@@ -1,54 +1,98 @@
-﻿using BOOSE;
+﻿using System;
+using System.Diagnostics;
+using BOOSE;
 
 namespace ASE_Assignment_Ashley_Hughes
 {
-    /// <summary>
-    /// Extended Real Number Variable class that builds upon the existing BOOSE.Real class.
-    /// </summary>
     public class AppReal : Real
     {
-        /// <summary>
-        /// Constructor for the extended Real class.
-        /// </summary>
+        private static int instanceCounter;
+
         public AppReal() : base()
         {
-            // Any additional initialization can go here
+            Debug.WriteLine("AppReal constructor called");
+            Restrictions();
         }
 
-        /// <summary>
-        /// Override the Restrictions method if you need to modify its behavior
-        /// </summary>
         public override void Restrictions()
         {
-            // If you want to change the restriction behavior
-            // Otherwise, you can remove this override and use the base implementation
-           // base.Restrictions();
+            Debug.WriteLine($"AppReal.Restrictions called - current count: {instanceCounter}");
+            if (instanceCounter++ > 50000)
+            {
+                Debug.WriteLine("AppReal restriction exceeded!");
+                throw new RestrictionException("Maximum number of Real instances exceeded");
+            }
         }
 
-        /// <summary>
-        /// Override the Compile method to add additional functionality
-        /// </summary>
         public override void Compile()
         {
-            // Add any pre-compilation logic here
+            Debug.WriteLine("AppReal.Compile called");
+            try
+            {
+                base.Compile();
+                Debug.WriteLine($"AppReal.Compile completed - varName: {varName}, expression: {expression}");
 
-            base.Compile();
+                // Check variable name and expression
+                if (string.IsNullOrEmpty(varName))
+                    Debug.WriteLine("WARNING: varName is null or empty after base.Compile()");
+                if (string.IsNullOrEmpty(expression))
+                    Debug.WriteLine("WARNING: expression is null or empty after base.Compile()");
 
-            // Add any post-compilation logic here
+                base.Program.AddVariable(this);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"ERROR in AppReal.Compile: {ex.Message}");
+                throw;
+            }
         }
 
-        /// <summary>
-        /// Override the Execute method to add additional functionality
-        /// </summary>
         public override void Execute()
         {
-            // Add any pre-execution logic here
+            Debug.WriteLine("AppReal.Execute called");
+            try
+            {
+                Debug.WriteLine($"Before base.Execute() - evaluatedExpression: '{evaluatedExpression}'");
+                base.Execute();
+                Debug.WriteLine($"After base.Execute() - evaluatedExpression: '{evaluatedExpression}', Value: {Value}");
 
-            base.Execute();
+                // If base.Execute() already set the value, don't try to parse again
+                if (!string.IsNullOrEmpty(evaluatedExpression))
+                {
+                    Debug.WriteLine($"Attempting to parse '{evaluatedExpression}' as double");
 
-            // Add any post-execution logic here
+                    // Try with invariant culture and different formats
+                    if (double.TryParse(evaluatedExpression, out double parsedValue))
+                    {
+                        Debug.WriteLine($"Successfully parsed '{evaluatedExpression}' to {parsedValue}");
+                        Value = parsedValue;
+                        base.Program.UpdateVariable(varName, Value);
+                    }
+                    else if (double.TryParse(evaluatedExpression.Replace(',', '.'),
+                             System.Globalization.NumberStyles.Any,
+                             System.Globalization.CultureInfo.InvariantCulture,
+                             out parsedValue))
+                    {
+                        Debug.WriteLine($"Successfully parsed '{evaluatedExpression}' to {parsedValue} using invariant culture");
+                        Value = parsedValue;
+                        base.Program.UpdateVariable(varName, Value);
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"FAILED to parse '{evaluatedExpression}' as double");
+                        throw new StoredProgramException($"Invalid real number format: '{evaluatedExpression}'");
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("evaluatedExpression is null or empty, skipping parsing");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"ERROR in AppReal.Execute: {ex.Message}");
+                throw;
+            }
         }
-
-        // Add any additional methods or properties specific to your implementation
     }
 }
