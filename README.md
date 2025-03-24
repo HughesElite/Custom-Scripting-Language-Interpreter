@@ -52,6 +52,9 @@
 #### 1 Further Version Control (1) 5 marks
 	You must continue to use VC to a professional standard with frequent and clear commits
 	Your Readme.md must be up to date
+
+  	* * * DONE * * * 
+   
 #### 2 Use of Interfaces (1) 5 marks 
 	Interfaces to be used for all classes where appropriate
 #### 3 Further Unit Testing (1) 5 marks
