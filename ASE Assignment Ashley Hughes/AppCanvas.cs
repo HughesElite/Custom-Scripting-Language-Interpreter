@@ -95,7 +95,10 @@ namespace ASE_Assignment_Ashley_Hughes
             YCanvasSize = ysize;
             xPos = yPos = 0;
             XCanvasSize = xsize;
-            Pen = new Pen(Color.Red, 3);
+            penColour = Color.Black;
+
+            // Use penColour for initial Pen color
+            Pen = new Pen(penColour, penSize);
             Brush = new SolidBrush(Color.Black);
             g = Graphics.FromImage(bm);
         }
@@ -251,7 +254,7 @@ namespace ASE_Assignment_Ashley_Hughes
             if (g != null)
             {
                 Font font = new Font("Arial", 11, FontStyle.Bold);
-                Brush brush = new SolidBrush(Color.Black);
+                Brush brush = new SolidBrush(penColour);
                 g.DrawString(text, font, brush, Xpos, Ypos);
             }
         }
