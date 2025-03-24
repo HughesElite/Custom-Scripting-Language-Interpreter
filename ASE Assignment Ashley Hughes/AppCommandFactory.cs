@@ -54,8 +54,8 @@ namespace ASE_Assignment_Ashley_Hughes
             if (commandType.Equals("write"))
                 return new AppWrite();
 
-            // if (commandType.Equals("array"))
-            //    return new AppArray();
+            //if (commandType.Equals("array"))
+            //   return new AppArray();
 
             if (commandType.Equals("poke"))
                 return new Poke();
@@ -65,6 +65,8 @@ namespace ASE_Assignment_Ashley_Hughes
                 return new Method();
             if (commandType.Equals("call"))
                 return new Call();
+            if (commandType.Equals("peek"))
+                return new Peek();
 
             throw new FactoryException(" No such command \'" + commandType + "\'"); // Throw an exception if the command type is unrecognised
 
