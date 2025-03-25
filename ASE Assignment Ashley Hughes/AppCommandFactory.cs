@@ -47,14 +47,13 @@ namespace ASE_Assignment_Ashley_Hughes
 
 
 
-           // //var command = base.MakeCommand(commandType);
-           // //if (command != null)
-           // //    return command;
+// //var command = base.MakeCommand(commandType);
+// //if (command != null)
+// //    return command;
 
-           //// throw new FactoryException(" No such command \'" + commandType + "\'");
+//// throw new FactoryException(" No such command \'" + commandType + "\'");
 
 
-           // return base.MakeCommand(commandType);  // Call the base class's MakeCommand method if no matching command type is found
+// return base.MakeCommand(commandType);  // Call the base class's MakeCommand method if no matching command type is found
 
-           // throw new FactoryException(" No such command \'" + commandType + "\'"); // Throw an exception if the command type is unrecognised
-
+// throw new FactoryException(" No such command \'" + commandType + "\'"); // Throw an exception if the command type is unrecognised
