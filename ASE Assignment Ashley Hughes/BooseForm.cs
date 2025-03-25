@@ -31,7 +31,7 @@ namespace ASE_Assignment_Ashley_Hughes
             // Set the static canvas for AppWrite
             AppWrite.SetCanvas(myCanvas);
             Factory = new AppCommandFactory();
-            Program = new StoredProgram(myCanvas);
+            Program = new AppStoredProgram(myCanvas);
             Parser = new Parser(Factory, Program);
         }
 
@@ -84,6 +84,7 @@ namespace ASE_Assignment_Ashley_Hughes
             {
                 myCanvas.Clear();
                 ClearAboutBooseBox();
+                myCanvas.PenColour = Color.Black;
                 string programText = ProgramWindow.Text;
 
                 // Reset the program state before running new code

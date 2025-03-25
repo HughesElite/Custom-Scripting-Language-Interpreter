@@ -33,6 +33,8 @@ namespace ASE_Assignment_Ashley_Hughes
                 return new AppWrite();
             if (commandType == "array")
                 return new AppArray();
+            if (commandType == "while")
+                return new AppWhile();
 
 
 

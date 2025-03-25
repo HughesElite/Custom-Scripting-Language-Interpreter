@@ -121,6 +121,7 @@ namespace ASE_Assignment_Ashley_Hughes
         {
             try
             {
+                Pen = new Pen(penColour, penSize);
                 if (radius < 0)
                 {
                     throw new CanvasException("Invalid circle radius " + radius);
