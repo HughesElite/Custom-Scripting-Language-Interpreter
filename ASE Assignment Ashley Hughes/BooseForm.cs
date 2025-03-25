@@ -32,7 +32,7 @@ namespace ASE_Assignment_Ashley_Hughes
             AppWrite.SetCanvas(myCanvas);
             Factory = new AppCommandFactory();
             Program = new AppStoredProgram(myCanvas);
-            Parser = new Parser(Factory, Program);
+            Parser = new AppParser(Factory, Program);
         }
 
         /// <summary>

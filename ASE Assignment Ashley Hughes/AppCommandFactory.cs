@@ -35,6 +35,8 @@ namespace ASE_Assignment_Ashley_Hughes
                 return new AppArray();
             if (commandType == "while")
                 return new AppWhile();
+            if (commandType == "CompoundCommand")
+                return new AppCompoundCommand();
 
 
 
