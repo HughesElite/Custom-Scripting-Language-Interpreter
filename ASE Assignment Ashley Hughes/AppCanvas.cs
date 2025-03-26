@@ -20,13 +20,12 @@ namespace ASE_Assignment_Ashley_Hughes
         protected Color penColour;
         protected Pen Pen;
         protected Brush Brush;
-
-        const int XSIZE = 600; //548;
-        const int YSIZE = 600; //365;
+        const int XSIZE = 800;
+        const int YSIZE = 800;
         private int errorYPos = 10;
         Bitmap bm = new Bitmap(XSIZE, YSIZE);
         Graphics g;
-        protected int penSize = 2;
+        protected int penSize = 4;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppCanvas"/> class.

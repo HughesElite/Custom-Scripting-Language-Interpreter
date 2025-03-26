@@ -82,22 +82,21 @@ namespace ASE_Assignment_Ashley_Hughes
         {
             try
             {
+
+                BooleanPatch.Apply();
                 myCanvas.Clear();
                 ClearAboutBooseBox();
                 myCanvas.PenColour = Color.Black;
                 string programText = ProgramWindow.Text;
 
-                // Reset the program state before running new code
-                Program = new StoredProgram(myCanvas);
-                Parser = new Parser(Factory, Program);
+                // Resets the program state before running new code
+                Program = new AppStoredProgram(myCanvas);
+                Parser = new AppParser(Factory, Program);
 
-                // Continue with the rest of the program
+                // Continues with the rest of the program
                 Parser.ParseProgram(programText);
                 Program.Run();
 
-           
-
-        
                 Refresh();
             }
             catch (CanvasException ex)
@@ -106,7 +105,7 @@ namespace ASE_Assignment_Ashley_Hughes
                 Refresh();
             }
 
-            catch (BOOSEException ex) 
+            catch (BOOSEException ex)
             {
                 ((AppCanvas)myCanvas).DisplayErrorOnCanvas(ex.Message);
                 Refresh();

@@ -14,10 +14,19 @@ namespace ASE_Assignment_Ashley_Hughes
     /// </summary>
     public class AppCommandFactory : CommandFactory
     {
-        public AppCommandFactory() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppCommandFactory"/> class.
+        /// Applies Boolean patch to bypass restrictions.
+        /// </summary>
+        public AppCommandFactory() 
+        {
+            BooleanPatch.Apply();
+        }
 
         /// <summary>
         /// Creates a command based on the provided command type.
+        /// Returns custom App implementations for BOOSE library commands to bypass BOOSE restrictions,
+        /// or falls back to the base implementation for unrecognised commands.
         /// </summary>
         /// <param name="commandType">The type of command to create.</param>
         /// <returns>An ICommand instance corresponding to the command type.</returns>
@@ -37,26 +46,15 @@ namespace ASE_Assignment_Ashley_Hughes
                 return new AppWhile();
             if (commandType == "if")
                 return new AppIf();
-
+            //if (commandType == "method")
+            //    return new AppMethod();
+            if (commandType == "bool" || commandType == "boolean")
+                return new AppBoolean();
 
             return (base.MakeCommand(commandType));
 
-            //throw new FactoryException("No such command \'"+commandType+"\'");
+            throw new FactoryException("No such command \'"+commandType+"\'");
 
         }
     }
 }
-
-
-
-
-// //var command = base.MakeCommand(commandType);
-// //if (command != null)
-// //    return command;
-
-//// throw new FactoryException(" No such command \'" + commandType + "\'");
-
-
-// return base.MakeCommand(commandType);  // Call the base class's MakeCommand method if no matching command type is found
-
-// throw new FactoryException(" No such command \'" + commandType + "\'"); // Throw an exception if the command type is unrecognised

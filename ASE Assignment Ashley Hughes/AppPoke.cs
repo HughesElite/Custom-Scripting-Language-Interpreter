@@ -4,15 +4,17 @@ using System.Diagnostics;
 
 namespace ASE_Assignment_Ashley_Hughes
 {
-    // Check if Poke exists in the BOOSE namespace, otherwise assume it's a standard class
+    /// <summary>
+    /// Extends the BOOSE Poke class.
+    /// </summary>
     public class AppPoke : Poke
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppPoke"/> class.
+        /// </summary>
         public AppPoke() : base()
         {
-            // Just call the base constructor
-            Debug.WriteLine("AppPoke constructor called");
+            // Calls the base constructor
         }
-
-        // We don't need to override any methods unless you want to add custom behavior
     }
 }
