@@ -291,6 +291,24 @@ namespace ASE_Assignment_Ashley_Hughes
             errorYPos = 10;
 
         }
+        public void DrawBitmap(Bitmap image)
+        {
+            // Clear the canvas first
+            Clear();
+
+            // Resize the image to fit the canvas if it's larger
+            if (image.Width > XCanvasSize || image.Height > YCanvasSize)
+            {
+                image = new Bitmap(image, new Size(XCanvasSize, YCanvasSize));
+            }
+
+            // Draw the image on the canvas
+            if (g != null)
+            {
+                g.DrawImage(image, 0, 0);
+            }
+        }
 
     }
+
 }

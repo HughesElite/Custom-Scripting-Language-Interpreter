@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.IO;
 using BOOSE;
 
 namespace ASE_Assignment_Ashley_Hughes
@@ -131,6 +132,37 @@ namespace ASE_Assignment_Ashley_Hughes
             ClearAll();
             myCanvas.PenColour = Color.Black;
             Refresh();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            string imagePath = @"C:\Users\G16\source\repos\ase-boose-assignment-HughesElite\ASE Assignment Ashley Hughes\icons\doga.png";
+
+            try
+            {
+                // Check if the file exists
+                if (!File.Exists(imagePath))
+                {
+                    MessageBox.Show("Image file not found.");
+                    return;
+                }
+
+                // Load the image
+                Bitmap customImage = new Bitmap(imagePath);
+
+                // Clear the canvas first
+                myCanvas.Clear();
+
+                // Draw the image
+                ((AppCanvas)myCanvas).DrawBitmap(customImage);
+
+                // Refresh the form to show the new image
+                Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading image: " + ex.Message);
+            }
         }
     }
 }

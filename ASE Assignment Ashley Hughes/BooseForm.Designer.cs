@@ -37,25 +37,29 @@
             OutputWindowLabel = new Label();
             AboutBooseBox = new TextBox();
             BeerImage = new PictureBox();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)PictureWindow).BeginInit();
             ((System.ComponentModel.ISupportInitialize)BeerImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // ProgramWindow
             // 
             ProgramWindow.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            ProgramWindow.Location = new Point(44, 76);
+            ProgramWindow.Location = new Point(50, 101);
+            ProgramWindow.Margin = new Padding(3, 4, 3, 4);
             ProgramWindow.Multiline = true;
             ProgramWindow.Name = "ProgramWindow";
-            ProgramWindow.Size = new Size(548, 365);
+            ProgramWindow.Size = new Size(626, 485);
             ProgramWindow.TabIndex = 0;
             // 
             // RunButton
             // 
             RunButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            RunButton.Location = new Point(44, 491);
+            RunButton.Location = new Point(50, 655);
+            RunButton.Margin = new Padding(3, 4, 3, 4);
             RunButton.Name = "RunButton";
-            RunButton.Size = new Size(104, 37);
+            RunButton.Size = new Size(119, 49);
             RunButton.TabIndex = 1;
             RunButton.Text = "Run";
             RunButton.UseVisualStyleBackColor = true;
@@ -64,9 +68,10 @@
             // PictureWindow
             // 
             PictureWindow.BackColor = SystemColors.Window;
-            PictureWindow.Location = new Point(712, 76);
+            PictureWindow.Location = new Point(814, 101);
+            PictureWindow.Margin = new Padding(3, 4, 3, 4);
             PictureWindow.Name = "PictureWindow";
-            PictureWindow.Size = new Size(548, 365);
+            PictureWindow.Size = new Size(626, 487);
             PictureWindow.TabIndex = 2;
             PictureWindow.TabStop = false;
             PictureWindow.Paint += PictureBox_Paint;
@@ -75,9 +80,10 @@
             // 
             ClearButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             ClearButton.ForeColor = SystemColors.ControlText;
-            ClearButton.Location = new Point(163, 491);
+            ClearButton.Location = new Point(186, 655);
+            ClearButton.Margin = new Padding(3, 4, 3, 4);
             ClearButton.Name = "ClearButton";
-            ClearButton.Size = new Size(104, 37);
+            ClearButton.Size = new Size(119, 49);
             ClearButton.TabIndex = 5;
             ClearButton.Text = "Clear All";
             ClearButton.UseVisualStyleBackColor = true;
@@ -88,9 +94,9 @@
             ProgramWindowLabel.AutoSize = true;
             ProgramWindowLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             ProgramWindowLabel.ForeColor = Color.YellowGreen;
-            ProgramWindowLabel.Location = new Point(44, 23);
+            ProgramWindowLabel.Location = new Point(50, 31);
             ProgramWindowLabel.Name = "ProgramWindowLabel";
-            ProgramWindowLabel.Size = new Size(198, 32);
+            ProgramWindowLabel.Size = new Size(250, 41);
             ProgramWindowLabel.TabIndex = 6;
             ProgramWindowLabel.Text = "Program Window";
             // 
@@ -99,9 +105,9 @@
             OutputWindowLabel.AutoSize = true;
             OutputWindowLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             OutputWindowLabel.ForeColor = Color.YellowGreen;
-            OutputWindowLabel.Location = new Point(712, 23);
+            OutputWindowLabel.Location = new Point(814, 31);
             OutputWindowLabel.Name = "OutputWindowLabel";
-            OutputWindowLabel.Size = new Size(184, 32);
+            OutputWindowLabel.Size = new Size(231, 41);
             OutputWindowLabel.TabIndex = 7;
             OutputWindowLabel.Text = "Output Window";
             // 
@@ -111,27 +117,44 @@
             AboutBooseBox.BorderStyle = BorderStyle.None;
             AboutBooseBox.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             AboutBooseBox.ForeColor = Color.YellowGreen;
-            AboutBooseBox.Location = new Point(712, 447);
+            AboutBooseBox.Location = new Point(814, 596);
+            AboutBooseBox.Margin = new Padding(3, 4, 3, 4);
             AboutBooseBox.Multiline = true;
             AboutBooseBox.Name = "AboutBooseBox";
-            AboutBooseBox.Size = new Size(297, 159);
+            AboutBooseBox.Size = new Size(339, 212);
             AboutBooseBox.TabIndex = 8;
             // 
             // BeerImage
             // 
+            BeerImage.BackColor = Color.Transparent;
             BeerImage.Image = (Image)resources.GetObject("BeerImage.Image");
-            BeerImage.Location = new Point(1044, 447);
+            BeerImage.Location = new Point(1193, 596);
+            BeerImage.Margin = new Padding(3, 4, 3, 4);
             BeerImage.Name = "BeerImage";
-            BeerImage.Size = new Size(216, 166);
+            BeerImage.Size = new Size(247, 221);
+            BeerImage.SizeMode = PictureBoxSizeMode.CenterImage;
             BeerImage.TabIndex = 9;
             BeerImage.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Anchor = AnchorStyles.None;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(12, 775);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(60, 60);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 10;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // BooseForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaGreen;
-            ClientSize = new Size(1303, 635);
+            ClientSize = new Size(1489, 847);
+            Controls.Add(pictureBox1);
             Controls.Add(BeerImage);
             Controls.Add(AboutBooseBox);
             Controls.Add(OutputWindowLabel);
@@ -143,12 +166,14 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "BooseForm";
             Text = "Ashley's BOOSE Interpreter";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)PictureWindow).EndInit();
             ((System.ComponentModel.ISupportInitialize)BeerImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -163,5 +188,6 @@
         private Label OutputWindowLabel;
         private TextBox AboutBooseBox;
         private PictureBox BeerImage;
+        private PictureBox pictureBox1;
     }
 }
