@@ -22,6 +22,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="BOOSE">
+      <HintPath>..\ASE Assignment Ashley Hughes\lib\BOOSE.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 
