@@ -14,7 +14,7 @@ namespace ASE_Assignment_Ashley_Hughes
         /// </summary>
         public AppPoke() : base()
         {
-            // Calls the base constructor
+            // Calls the base constructor.
         }
     }
 }
