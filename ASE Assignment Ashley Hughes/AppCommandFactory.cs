@@ -20,7 +20,7 @@ namespace ASE_Assignment_Ashley_Hughes
         /// </summary>
         public AppCommandFactory() 
         {
-            BooleanPatch.Apply();
+            BooseReset.ResetAllBOOSECounters();
         }
 
         /// <summary>
@@ -46,8 +46,8 @@ namespace ASE_Assignment_Ashley_Hughes
                 return new AppWhile();
             if (commandType == "if")
                 return new AppIf();
-            //if (commandType == "method")
-            //    return new AppMethod();
+            if (commandType == "method")
+                return new AppMethod();
             if (commandType == "bool" || commandType == "boolean")
                 return new AppBoolean();
 

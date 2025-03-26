@@ -84,7 +84,7 @@ namespace ASE_Assignment_Ashley_Hughes
             try
             {
 
-                BooleanPatch.Apply();
+                BooseReset.ResetAllBOOSECounters();
                 myCanvas.Clear();
                 ClearAboutBooseBox();
                 myCanvas.PenColour = Color.Black;
@@ -136,7 +136,7 @@ namespace ASE_Assignment_Ashley_Hughes
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            string imagePath = @"C:\Users\G16\source\repos\ase-boose-assignment-HughesElite\ASE Assignment Ashley Hughes\icons\doga.png";
+            string imagePath = @"C:\Users\G16\source\repos\ase-boose-assignment-HughesElite\ASE Assignment Ashley Hughes\icons\dog.png";
 
             try
             {
@@ -150,10 +150,10 @@ namespace ASE_Assignment_Ashley_Hughes
                 // Load the image
                 Bitmap customImage = new Bitmap(imagePath);
 
-                // Clear the canvas first
+                // Clears the canvas first
                 myCanvas.Clear();
 
-                // Draw the image
+                // Draws the image
                 ((AppCanvas)myCanvas).DrawBitmap(customImage);
 
                 // Refresh the form to show the new image

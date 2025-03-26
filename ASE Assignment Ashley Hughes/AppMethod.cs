@@ -6,21 +6,57 @@ using System.Diagnostics;
 namespace ASE_Assignment_Ashley_Hughes
 {
     /// <summary>
-    /// Extends the BOOSE Array class to override restrictions.
+    /// Extends the BOOSE Method class to override built-in restrictions.
     /// </summary>
-    public class AppMethod : BOOSE.Method
+    public class AppMethod : Method
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AppArray"/> class.
-        ///  Calls the base class method to bypass BOOSE library array limitations.
+        /// Static constructor that runs once before any instances are created.
+        /// Resets all static counters in the Method class.
         /// </summary>
-        public AppMethod()
+        static AppMethod()
         {
-            
+            ResetMethodCounter();
         }
 
         /// <summary>
-        /// Compiles the array command.
+        /// Initializes a new instance of the <see cref="AppMethod"/> class.
+        /// </summary>
+        public AppMethod() : base()
+        {
+            // Reset the counter again just to be safe
+            ResetMethodCounter();
+        }
+
+        /// <summary>
+        /// Uses reflection to reset the static counter in the Method class
+        /// that limits the number of method instances.
+        /// </summary>
+        private static void ResetMethodCounter()
+        {
+            try
+            {
+                // Find all static fields in the Method class
+                FieldInfo[] fields = typeof(Method).GetFields(
+                    BindingFlags.NonPublic | BindingFlags.Static);
+
+                // Reset all integer fields (potential counters)
+                foreach (FieldInfo field in fields)
+                {
+                    if (field.FieldType == typeof(int))
+                    {
+                        field.SetValue(null, 0);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error resetting Method counter: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Compiles the method command.
         /// </summary>
         public override void Compile()
         {
@@ -28,12 +64,11 @@ namespace ASE_Assignment_Ashley_Hughes
         }
 
         /// <summary>
-        /// Compiles the array command.
+        /// Executes the method command.
         /// </summary>
         public override void Execute()
         {
             base.Execute();
         }
     }
-
 }
