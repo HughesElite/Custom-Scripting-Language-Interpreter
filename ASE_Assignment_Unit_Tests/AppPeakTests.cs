@@ -6,10 +6,10 @@ using BOOSE;
 namespace ASE_Assignment_Ashley_Hughes.Tests
 {
     /// <summary>
-    /// MSTest class for testing the AppArray class.
+    /// MSTest class for testing the AppPeek class.
     /// </summary>
     [TestClass]
-    public class AppArrayTests
+    public class AppPeekTests
     {
         /// <summary>
         /// Initializes test environment before each test.
@@ -28,10 +28,10 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
         public void Constructor_CreatesInstance()
         {
             // Arrange & Act
-            var appArray = new AppArray();
+            var appPeek = new AppPeek();
 
             // Assert
-            Assert.IsNotNull(appArray, "AppArray instance should be created");
+            Assert.IsNotNull(appPeek, "AppPeek instance should be created");
         }
 
         /// <summary>
@@ -40,56 +40,32 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
         [TestMethod]
         public void MultipleInstances_CanBeCreated()
         {
-            // Arrange & Act
-            for (int i = 0; i < 10; i++)
-            {
-                // Reset Array counters before creating each instance
-                ResetCountersInClass(typeof(BOOSE.Array));
-                var appArray = new AppArray();
-                // No need to call any methods, just create instances
-            }
+            // Create first instance
+            ResetAllBOOSECounters();
+            var firstPeek = new AppPeek();
 
-            // Assert - if test reaches here without an exception, the test passes
-            Assert.IsTrue(true, "Test should complete without exceptions");
+            // Reset counters and create second instance
+            ResetAllBOOSECounters();
+            var secondPeek = new AppPeek();
+
+            // Assert both instances were created
+            Assert.IsNotNull(firstPeek, "First AppPeek instance should be created");
+            Assert.IsNotNull(secondPeek, "Second AppPeek instance should be created");
         }
 
         /// <summary>
-        /// Tests that Compile method executes without errors.
+        /// Tests that the AppPeek extends the BOOSE Peek class.
         /// </summary>
         [TestMethod]
-        public void Compile_IsSkipped()
-        {
-            // Skip actually calling Compile() since it requires complex initialization
-            // Just verify the class can be instantiated
-            var appArray = new AppArray();
-            Assert.IsNotNull(appArray, "AppArray instance should be created");
-
-            // Assert - if test reaches here without an exception, the test passes
-            Assert.IsTrue(true, "Test should complete without exceptions");
-        }
-
-        /// <summary>
-        /// Tests that Execute method executes without errors.
-        /// </summary>
-        [TestMethod]
-        public void Execute_ExecutesWithoutErrors()
+        public void AppPeek_InheritsFromPeek()
         {
             // Arrange
-            var appArray = new AppArray();
+            Type peekType = typeof(Peek);
+            Type appPeekType = typeof(AppPeek);
 
-            // Act - this might throw without proper program/canvas setup, but we're testing basic functionality
-            try
-            {
-                appArray.Execute();
-                // If we get here without exception, the test passes
-                Assert.IsTrue(true, "Execute should not throw exceptions with proper setup");
-            }
-            catch (NullReferenceException)
-            {
-                // We can expect NullReferenceException because we haven't set up the Program property
-                // This is expected behavior without proper initialization
-                Assert.IsTrue(true, "NullReferenceException is expected without proper initialization");
-            }
+            // Act & Assert
+            Assert.IsTrue(peekType.IsAssignableFrom(appPeekType),
+                "AppPeek should inherit from Peek");
         }
 
         /// <summary>
@@ -99,23 +75,32 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
         {
             try
             {
-                // Reset CompoundCommand counters
-                ResetCountersInClass(typeof(CompoundCommand));
+                // Reset all BOOSE class counters in this specific order
+                // Order is important because of class dependencies
 
-                // Reset While counters
-                ResetCountersInClass(typeof(BOOSE.While));
-
-                // Reset If counters
-                ResetCountersInClass(typeof(If));
-
-                // Reset Boolean counters
+                // Reset Boolean counters first
                 ResetCountersInClass(typeof(BOOSE.Boolean));
 
                 // Reset Array counters
                 ResetCountersInClass(typeof(BOOSE.Array));
 
+                // Reset ConditionalCommand counters 
+                ResetCountersInClass(typeof(ConditionalCommand));
+
+                // Reset If counters
+                ResetCountersInClass(typeof(If));
+
+                // Reset While counters
+                ResetCountersInClass(typeof(BOOSE.While));
+
+                // Reset CompoundCommand counters
+                ResetCountersInClass(typeof(CompoundCommand));
+
                 // Reset Method counters
                 ResetCountersInClass(typeof(Method));
+
+                // Reset Peek counters
+                ResetCountersInClass(typeof(Peek));
             }
             catch (Exception ex)
             {
