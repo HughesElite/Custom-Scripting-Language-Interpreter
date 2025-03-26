@@ -30,8 +30,6 @@ namespace ASE_Assignment_Ashley_Hughes
                 // Reset Array counters
                 ResetCountersInClass(typeof(BOOSE.Array));
 
-                // Only debug output on successful completion if needed for troubleshooting
-                // Debug.WriteLine("All BOOSE counters reset successfully");
             }
             catch (Exception ex)
             {
@@ -57,8 +55,7 @@ namespace ASE_Assignment_Ashley_Hughes
                     if (field.FieldType == typeof(int))
                     {
                         field.SetValue(null, 0);
-                        // Remove debug output for successful resets
-                        // Debug.WriteLine($"Reset counter {field.Name} in {classType.Name}");
+                      
                     }
                 }
             }
