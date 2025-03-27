@@ -23,7 +23,7 @@ namespace ASE_Assignment_Ashley_Hughes
         /// </summary>
         public override void Restrictions()
         {
-            if (instanceCounter++ > 50000)
+            if (instanceCounter++ > 50000000000)
             {
                 throw new RestrictionException("Maximum number of Real instances exceeded");
             }

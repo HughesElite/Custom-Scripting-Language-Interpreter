@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace ASE_Assignment_Ashley_Hughes
 {
     /// <summary>
-    /// Extends the BOOSE Method class to override built-in restrictions.
+    /// Extends the BOOSE Method class to override restrictions.
     /// </summary>
     public class AppMethod : Method
     {
@@ -24,7 +24,6 @@ namespace ASE_Assignment_Ashley_Hughes
         /// </summary>
         public AppMethod() : base()
         {
-            // Reset the counter again just to be safe
             ResetMethodCounter();
         }
 

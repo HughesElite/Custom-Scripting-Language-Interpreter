@@ -11,7 +11,7 @@ namespace ASE_Assignment_Ashley_Hughes
     public class AppBoolean : BOOSE.Boolean
     {
         /// <summary>
-        /// Overrides the base Restrictions method to bypass the built-in limitation
+        /// Overrides the base Restrictions method to bypass limitations
         /// on the number of Boolean instances that can be created.
         /// </summary>
         public override void Restrictions()

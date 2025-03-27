@@ -83,8 +83,9 @@ namespace ASE_Assignment_Ashley_Hughes
         {
             try
             {
-
+                // Reset all BOOSE performance counters to their initial state
                 BooseReset.ResetAllBOOSECounters();
+
                 myCanvas.Clear();
                 ClearAboutBooseBox();
                 myCanvas.PenColour = Color.Black;
@@ -134,6 +135,11 @@ namespace ASE_Assignment_Ashley_Hughes
             Refresh();
         }
 
+        /// <summary>
+        /// Loads and displays a dog image on the canvas when pictureBox1 is clicked, with error handling.
+        /// </summary>
+        /// <param name="sender">Event sender.</param>
+        /// <param name="e">Event arguments.</param>
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             string imagePath = @"C:\Users\G16\source\repos\ase-boose-assignment-HughesElite\ASE Assignment Ashley Hughes\icons\dog.png";

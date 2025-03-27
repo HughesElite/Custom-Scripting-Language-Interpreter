@@ -17,7 +17,5 @@ namespace ASE_Assignment_Ashley_Hughes
             // Calls the base constructor
 
         }
-
-
     }
 }

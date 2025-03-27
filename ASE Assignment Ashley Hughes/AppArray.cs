@@ -12,7 +12,7 @@ namespace ASE_Assignment_Ashley_Hughes
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AppArray"/> class.
-        ///  Calls the base class method to bypass BOOSE library array limitations.
+        /// Calls the base class method to bypass BOOSE library array limitations.
         /// </summary>
         public AppArray()
         {

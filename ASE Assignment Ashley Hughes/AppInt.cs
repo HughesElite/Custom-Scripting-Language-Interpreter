@@ -43,12 +43,12 @@ public class AppInt : Int
     public override void Execute()
     {
         base.Execute();
-        // Attempt to parse the evaluated expression
+        // Attempts to parse the evaluated expression
         if (!int.TryParse(evaluatedExpression, out int parsedValue))
         {
             throw new StoredProgramException("Invalid integer format");
         }
-        // Update the value and the program variable
+        // Updates the value and the program variable
         Value = parsedValue;
         base.Program.UpdateVariable(varName, Value);
     }

@@ -21,8 +21,7 @@ namespace ASE_Assignment_Ashley_Hughes
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppIf"/> class.
-        /// Resets restriction counters and reduces restrictions to bypass
-        /// built-in BOOSE limitations.
+        /// Resets restriction counters and reduces restrictions to bypass BOOSE restrictions
         /// </summary>
         public AppIf()
         {

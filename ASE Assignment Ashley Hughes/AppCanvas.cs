@@ -291,6 +291,11 @@ namespace ASE_Assignment_Ashley_Hughes
             errorYPos = 10;
 
         }
+
+        /// <summary>
+        /// Draws a bitmap om the canvas, clears previous content and resizes  
+        /// image if it exceeds canvas dimensions.
+        /// </summary>
         public void DrawBitmap(Bitmap image)
         {
             // Clear the canvas first
