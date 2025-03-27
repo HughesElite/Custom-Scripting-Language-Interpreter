@@ -33,10 +33,11 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
         public void MultipleInstances_CanBeCreated()
         {
             // Arrange & Act
+            // Create 100 separate AppBoolean instances and call Restrictions() on each one
             for (int i = 0; i < 100; i++)
             {
                 var appBoolean = new AppBoolean();
-                appBoolean.Restrictions(); // Call restrictions on each
+                appBoolean.Restrictions();
             }
 
             // Assert - if test reaches here without an exception, the test passes

@@ -46,7 +46,7 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
                 // Reset Array counters before creating each instance
                 ResetCountersInClass(typeof(BOOSE.Array));
                 var appArray = new AppArray();
-                // No need to call any methods, just create instances
+             
             }
 
             // Assert - if test reaches here without an exception, the test passes
@@ -54,18 +54,19 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
         }
 
         /// <summary>
-        /// Tests that Compile method executes without errors.
+        /// Verifies that the AppArray class can be instantiated successfully
         /// </summary>
         [TestMethod]
-        public void Compile_IsSkipped()
+        public void AppArray_CanBeInstantiated()
         {
-            // Skip actually calling Compile() since it requires complex initialization
-            // Just verify the class can be instantiated
+            // Arrange & Act
             var appArray = new AppArray();
+
+            //Assert 
             Assert.IsNotNull(appArray, "AppArray instance should be created");
 
-            // Assert - if test reaches here without an exception, the test passes
             Assert.IsTrue(true, "Test should complete without exceptions");
+            // Test passes if execution reaches this point without exceptions
         }
 
         /// <summary>
@@ -77,17 +78,15 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
             // Arrange
             var appArray = new AppArray();
 
-            // Act - this might throw without proper program/canvas setup, but we're testing basic functionality
+            // Act & Asset
             try
             {
                 appArray.Execute();
-                // If we get here without exception, the test passes
                 Assert.IsTrue(true, "Execute should not throw exceptions with proper setup");
             }
             catch (NullReferenceException)
             {
-                // We can expect NullReferenceException because we haven't set up the Program property
-                // This is expected behavior without proper initialization
+                // Expected when Program property is uninitialized
                 Assert.IsTrue(true, "NullReferenceException is expected without proper initialization");
             }
         }

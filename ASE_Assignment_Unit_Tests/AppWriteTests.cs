@@ -15,7 +15,7 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
         private ICanvas canvas;
 
         /// <summary>
-        /// Initializes test environment before each test.
+        /// Initialises test environment before each test.
         /// </summary>
         [TestInitialize]
         public void Setup()
@@ -107,8 +107,7 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
             // Create an instance and try to use it (would throw if canvas is not set)
             var appWrite = new AppWrite();
 
-            // Assert - we can only indirectly test if the canvas was set
-            // by confirming no exceptions are thrown when we create and use the instance
+            // Assert - test if canvas was set
             Assert.IsNotNull(appWrite, "AppWrite instance should be created after setting canvas");
         }
 

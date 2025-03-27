@@ -88,26 +88,24 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
         }
 
         /// <summary>
-        /// Tests that MakeCommand falls back to base implementation for unrecognized commands.
+        /// Verifies that MakeCommand delegates to base implementation for unrecognized commands.
         /// </summary>
         [TestMethod]
         public void MakeCommand_FallsBackToBaseImplementation()
         {
-            // Arrange - factory is created in Setup
+           // Arrange - facory already instantiaed in Setup method
 
-            // Act - Try to create a command that's handled by the base class
-            // This test might fail if the base class doesn't handle this command
-            // or if it throws an exception for unknown commands
+           // Act
             try
             {
                 var command = factory.MakeCommand("circle");
 
-                // Assert - if we get here, just verify it returned something
+                // Assert
                 Assert.IsNotNull(command, "Should return a command from base implementation");
             }
             catch (FactoryException)
             {
-                // If base class throws exception for unknown command, test passes
+                // Assert = exception path
                 Assert.IsTrue(true, "Base class might throw exception for unknown commands");
             }
         }

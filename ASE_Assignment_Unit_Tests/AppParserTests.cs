@@ -123,10 +123,10 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
             }
             catch (Exception ex)
             {
-                // Log the exception but don't fail - BOOSE library may have internal issues
+                // Log the exception
                 Console.WriteLine($"ParseProgram threw an exception: {ex.Message}");
 
-                // Skip assertion if it's a known BOOSE limitation
+                // Skip assertion
                 if (!(ex is NullReferenceException) &&
                     !(ex.Message.Contains("limit")) &&
                     !(ex.Message.Contains("not set to an instance")))

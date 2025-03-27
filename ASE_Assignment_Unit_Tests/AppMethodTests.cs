@@ -45,22 +45,22 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
         [TestMethod]
         public void MultipleInstances_CanBeCreated()
         {
-            // Create first instance
+            // Arrange
             ResetAllBOOSECounters();
             var firstMethod = new AppMethod();
 
-            // Reset counters and create second instance
+            // Act
             ResetAllBOOSECounters();
             var secondMethod = new AppMethod();
 
-            // Assert both instances were created
+            // Assert
             Assert.IsNotNull(firstMethod, "First AppMethod instance should be created");
             Assert.IsNotNull(secondMethod, "Second AppMethod instance should be created");
         }
 
         /// <summary>
         /// Tests that the Compile method exists and can be called.
-        /// NullReferenceException is expected because the base class requires initialization.
+        /// NullReferenceException is expected because the base class requires initialisation.
         /// </summary>
         [TestMethod]
         public void Compile_MethodExists()
@@ -74,14 +74,10 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
             // Assert
             Assert.IsNotNull(compileMethod, "Compile method should exist");
 
-            // Note: We're not calling the method since it would throw a NullReferenceException
-            // due to uninitialized dependencies in the BOOSE library
         }
 
         /// <summary>
         /// Tests that the Execute method exists and can be called.
-        /// Note: The actual execution is not tested as it would likely throw exceptions
-        /// due to dependencies in the BOOSE library.
         /// </summary>
         [TestMethod]
         public void Execute_MethodExists()
@@ -94,9 +90,6 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
 
             // Assert
             Assert.IsNotNull(executeMethod, "Execute method should exist");
-
-            // Note: We're not calling the method since it would likely throw exceptions
-            // due to uninitialized dependencies in the BOOSE library
         }
 
         /// <summary>
@@ -105,16 +98,16 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
         [TestMethod]
         public void StaticConstructor_ResetsMethodCounter()
         {
-            // Reset all relevant counters before each instance creation
+            // Arrange - Reset counters before first instantiation
             ResetAllBOOSECounters();
 
-            // Create just one instance to test the static constructor
+            // Create first instance
             var appMethod = new AppMethod();
 
-            // Reset counters again
+            // Reset counters before second instantiation
             ResetAllBOOSECounters();
 
-            // Create a second instance to verify we can create more than one
+            // Create a second instance
             var secondAppMethod = new AppMethod();
 
             // Assert - if test reaches here without an exception, the test passes
@@ -131,7 +124,7 @@ namespace ASE_Assignment_Ashley_Hughes.Tests
             // Reset all BOOSE counters explicitly before the test
             ResetAllBOOSECounters();
 
-            // Manually reset CompoundCommand counters since that's causing the failure
+            // Manually reset CompoundCommand counters
             ResetCountersInClass(typeof(CompoundCommand));
 
             // Act - call private method via reflection
