@@ -6,7 +6,7 @@ namespace ASE_Assignment_Ashley_Hughes
 {
     /// <summary>
     /// Represents the main windows form for the BOOSE Interpreter.
-    /// Handles the graphical user interface and program execution.
+    /// Handles the graphical user interface and program execution./
     /// </summary>
     public partial class BooseForm : Form
     {
