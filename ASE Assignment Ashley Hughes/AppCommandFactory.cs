@@ -18,7 +18,7 @@ namespace ASE_Assignment_Ashley_Hughes
         /// Initializes a new instance of the <see cref="AppCommandFactory"/> class.
         /// Applies Boolean patch to bypass restrictions.
         /// </summary>
-        public AppCommandFactory() 
+        public AppCommandFactory()
         {
             BooseReset.ResetAllBOOSECounters();
         }
@@ -51,10 +51,15 @@ namespace ASE_Assignment_Ashley_Hughes
             if (commandType == "bool" || commandType == "boolean")
                 return new AppBoolean();
 
-            return (base.MakeCommand(commandType));
-
-            throw new FactoryException("No such command \'"+commandType+"\'");
-
+            try
+            {
+                return base.MakeCommand(commandType);
+            }
+            catch
+            {
+                // If the base implementation can't find the command, throw a FactoryException
+                throw new FactoryException("No such command '" + commandType + "'");
+            }
         }
     }
 }
