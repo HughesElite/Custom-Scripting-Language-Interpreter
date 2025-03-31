@@ -95,14 +95,14 @@
 #### 8 Additional (web version, text-based version, extension to BOOSE itself, etc, discuss with your tutor) (2) 10 marks
 
 	* * * DONE * * *
-
- *** Full online BOOSE Documentation for main project and test project. ***
-https://hugheselite.github.io/Ashley-Boose-Documentation/
  
-*** Replaced StoredProgram and Parser to get 1unrestictedProgramsize.boose to work, link below. ***
-https://github.com/dmullier/BOOSE-Docs/blob/main/BOOSEexamplePrograms/6addYourProgramsHere/1unrestrictedProgramsize.png
+  	*** Full online BOOSE Documentation for main project and test project. ***
+	https://hugheselite.github.io/Ashley-Boose-Documentation/
+ 
+ 	*** Replaced StoredProgram and Parser to get 1unrestictedProgramsize.boose to work, link below. ***
+	https://github.com/dmullier/BOOSE-Docs/blob/main/BOOSEexamplePrograms/6addYourProgramsHere/1unrestrictedProgramsize.png
 
-*** When paw image is clicked in Ashley’s Boose Interpreter a PNG file is displayed on the canvas (easter egg). ***
+	*** When paw image is clicked in Ashley’s Boose Interpreter a PNG file is displayed on the canvas (easter egg). ***
 
 
 ### Tutor's Feedback
