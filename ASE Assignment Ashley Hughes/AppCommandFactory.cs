@@ -55,8 +55,11 @@ namespace ASE_Assignment_Ashley_Hughes
             {
                 return base.MakeCommand(commandType);
             }
-            catch
+            catch (Exception ex)
             {
+                // Logs the error before throwing the exception
+                ErrorLogger.Instance.LogError($"Command not found: '{commandType}'. Error: {ex.Message}");
+
                 // If the base implementation can't find the command, throw a FactoryException
                 throw new FactoryException("No such command '" + commandType + "'");
             }
