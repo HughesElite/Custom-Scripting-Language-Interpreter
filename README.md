@@ -102,6 +102,8 @@
  	*** Replaced StoredProgram and Parser to get 1unrestictedProgramsize.boose to work, link below. ***
 	https://github.com/dmullier/BOOSE-Docs/blob/main/BOOSEexamplePrograms/6addYourProgramsHere/1unrestrictedProgramsize.png
 
+ 	*** Added bitmap save/load functionality with directory persistence, file type validation and error handling ***
+  
 	*** When paw image is clicked in Ashley’s Boose Interpreter a PNG file is displayed on the canvas (easter egg). ***
 
 
