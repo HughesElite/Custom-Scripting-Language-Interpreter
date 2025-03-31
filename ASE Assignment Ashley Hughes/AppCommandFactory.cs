@@ -48,7 +48,7 @@ namespace ASE_Assignment_Ashley_Hughes
                 return new AppIf();
             if (commandType == "method")
                 return new AppMethod();
-            if (commandType == "bool" || commandType == "boolean")
+            if (commandType == "bool" || commandType == "boolean")//
                 return new AppBoolean();
 
             try
