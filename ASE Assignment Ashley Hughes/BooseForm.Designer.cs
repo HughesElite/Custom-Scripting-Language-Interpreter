@@ -38,6 +38,8 @@
             AboutBooseBox = new TextBox();
             BeerImage = new PictureBox();
             pictureBox1 = new PictureBox();
+            LoadButton = new Button();
+            SaveButton = new Button();
             ((System.ComponentModel.ISupportInitialize)PictureWindow).BeginInit();
             ((System.ComponentModel.ISupportInitialize)BeerImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -148,12 +150,40 @@
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
+            // LoadButton
+            // 
+            LoadButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            LoadButton.ForeColor = SystemColors.ControlText;
+            LoadButton.Location = new Point(557, 655);
+            LoadButton.Margin = new Padding(3, 4, 3, 4);
+            LoadButton.Name = "LoadButton";
+            LoadButton.Size = new Size(119, 49);
+            LoadButton.TabIndex = 11;
+            LoadButton.Text = "Load";
+            LoadButton.UseVisualStyleBackColor = true;
+            LoadButton.Click += LoadButton_Click;
+            // 
+            // SaveButton
+            // 
+            SaveButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            SaveButton.ForeColor = SystemColors.ControlText;
+            SaveButton.Location = new Point(432, 655);
+            SaveButton.Margin = new Padding(3, 4, 3, 4);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Size = new Size(119, 49);
+            SaveButton.TabIndex = 12;
+            SaveButton.Text = "Save";
+            SaveButton.UseVisualStyleBackColor = true;
+            SaveButton.Click += SaveButton_Click;
+            // 
             // BooseForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SeaGreen;
             ClientSize = new Size(1489, 847);
+            Controls.Add(SaveButton);
+            Controls.Add(LoadButton);
             Controls.Add(pictureBox1);
             Controls.Add(BeerImage);
             Controls.Add(AboutBooseBox);
@@ -189,5 +219,7 @@
         private TextBox AboutBooseBox;
         private PictureBox BeerImage;
         private PictureBox pictureBox1;
+        private Button LoadButton;
+        private Button SaveButton;
     }
 }

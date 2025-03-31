@@ -153,7 +153,7 @@ namespace ASE_Assignment_Ashley_Hughes
                     return;
                 }
 
-                // Load the image
+                // Loads the image
                 Bitmap customImage = new Bitmap(imagePath);
 
                 // Clears the canvas first
@@ -168,6 +168,46 @@ namespace ASE_Assignment_Ashley_Hughes
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading image: " + ex.Message);
+            }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            CanvasExporter.ExportCanvasImage(myCanvas, this);
+
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Load Image";
+                openFileDialog.Filter = "Image Files|*.png;*.jpg;*.jpeg;*.bmp;*.gif";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Loads the image
+                        Bitmap importedImage = new Bitmap(openFileDialog.FileName);
+
+                        // Clears the canvas first
+                        myCanvas.Clear();
+
+                        // Draws the image on the canvas
+                        ((AppCanvas)myCanvas).DrawBitmap(importedImage);
+
+                        // Refreshs the display
+                        Refresh();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error loading image: {ex.Message}", "Load Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        ErrorLogger.Instance.LogError($"Error loading image: {ex.Message}");
+                    }
+                }
             }
         }
     }
